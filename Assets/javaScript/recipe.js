@@ -1,19 +1,12 @@
-var x="https://www.themealdb.com/api/json/v1/1/search.php?s=beans"
-var y = "https://www.themealdb.com/api/json/v1/1/random.php"
-var searchBar= document.getElementById("searchBar")
-function formInput(){
-    
-    fetch(x)
-    .then(function(response){
-    return response.json();
-    }).then(function(data){
-        console.log(data)})
-    }
-    formInput()
+var buttonSearchMain = document.getElementById('main-btn');
+var buttonSearchSecondary = document.getElementById('secondary-btn');
+var mainSeachBar = document.getElementById('main-search');
 
-function getInput(event){
-    event.preventDefault
-    var q=searchBar.value
-    console.log(q)
-}
+var userSearchMain = "";
+var userSearchSecondary = "";
+
+
+var apiURL = "https://www.themealdb.com/api/json/v1/1/search.php?s="
+var y = "https://www.themealdb.com/api/json/v1/1/random.php"
+function formInput(){
     
