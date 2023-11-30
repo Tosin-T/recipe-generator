@@ -51,6 +51,7 @@ buttonSearchMain.addEventListener('click', function () {
 
 buttonSearchSecondary.addEventListener('click', function () {
 
+    
     console.log('secondary button works');
     var userSearchSecondary = document.getElementById("secondaryInput").value;
     console.log(userSearchSecondary);
