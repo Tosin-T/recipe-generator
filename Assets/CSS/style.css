@@ -6,12 +6,14 @@ body {
 .navbar-brand {
     font-size: 1.5rem;
     font-size: 40px;
+    /* text-align: center; */
 
 }
 
 .bg-nav {
     background-color: rgb(220, 236, 173);
 }
+
 
 
 aside {
@@ -33,29 +35,42 @@ aside h2 {
     text-align: center;
 }
 
-
-main {
-    margin-right: 320px;
-}
-
 .feeling-search {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
-    background-color: #f5f3bd;
+   margin-top: 60px;
+    flex-direction: column;
 }
 
 .feeling-search input {
-    width: 50%;
     padding: 10px;
     font-size: 1.5rem;
     border: 2px solid #ddd;
     border-radius: 5px;
-}
+    margin-bottom: 10px;
+    /* flex-direction: column;
+ */ }
 
 .feeling-search button {
     margin-left: 10px;
     padding: 10px;
     font-size: 1.5rem;
+    height: 55px;
 }
+
+.search-btn {
+display: flex;
+}
+
+fieldset {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    
+}
+
+label {
+padding: 1.5rem;
+}
+
