@@ -23,17 +23,37 @@
     <div class="container-fluid">
       <a class="navbar-brand mx-auto">Recipe Roulette</a>
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search Recipe" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input id="secondaryInput" class="form-control me-2" type="search" placeholder="Search Recipe" aria-label="Search">
+        <button class="btn btn-outline-success" id="secondary-btn" type="submit">Search</button>
       </form>
     </div>
   </nav>
 
   <main class="container mt-3">
+    <div id="main-search" class="show">
     <div class="feeling-search">
-      <input class="form-control" type="text" placeholder="How are you feeling today?" aria-label="Feeling">
-      <button class="btn btn-outline-success" type="button">Search</button>
+      <input id="mainInput" class="form-control" type="text" placeholder="How are you feeling today?" aria-label="Feeling">
+      <button class="btn btn-outline-success" id="main-btn" type="button">Search</button>
     </div>
+  </div>
+
+  <!--Image showing, so we have an idea about positioning in the screen-->
+  <div id= "main-content"  class="show">
+<h3 id="receipe-name">Title</h3>
+<img id="image" src="https://www.themealdb.com/images/media/meals/1550441882.jpg" alt="Image of the dish">
+<ul id="ingredients">ingredients
+  <li>Ingredient 1</li>
+  <li>Ingredient 2</li>
+  <li>Ingredient 3</li>
+</ul>
+  <p id="instructions">Instructions</p>
+
+
+
+
+
+
+  </div>
 
     <!-- ... (your main content) ... -->
     <aside class="bg-side p-3">
@@ -48,8 +68,7 @@
       <p>&copy; 2023 Recipe Roulette</p>
     </footer> -->
 
-  <input id=searchBar>
-  <button id=imFeelingLucky>Im Feeling Lucky</button>
+
   <script src="Assets/javaScript/recipe.js"></script>
 </body>
 </html>
