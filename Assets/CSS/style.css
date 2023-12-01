@@ -1,29 +1,30 @@
 body {
     font-family: cursive;
     background-color: #f5f3bd;
-    margin: 0;
+    margin-top: 0;
 }
 
 .navbar-brand {
     font-size: 1.5rem;
     font-size: 40px;
-   
+
 }
 
-.bg-nav {
-    background-color: rgb(220, 236, 173);
-    height: 90px;
-}
-
-.nav-container {
+.container-fluid {
     position: fixed;
     width: 100%;
-    /* z-index: 1000; */
+    z-index: 1000;
+    background-color: rgb(220, 236, 173);
+    height: 150px;
+    padding-top: 40px;
+    margin-top: 25px;
+    
 }
 
-/* main {
-    padding-top: 50px;
-} */
+main {
+    padding-top: 90px;
+}
+
 
 aside {
     width: 300px;
