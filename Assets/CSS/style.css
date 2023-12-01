@@ -63,3 +63,50 @@ main {
 .hide {
     display: none;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* favourite button style */
+.recipies{
+
+    width: 30vh;
+    top: 20vh;
+    right: 0;
+    height: 3%;
+    border-left: 1px solid #ddd;
+    padding: 20px;
+   
+
+    position: relative;
+    
+}
+
+
+/* display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+    position: relative;
+    left: 20%;
+} */

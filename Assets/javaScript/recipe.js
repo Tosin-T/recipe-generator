@@ -15,7 +15,7 @@ var queryURL;
 //MAIN SEARCH BUTTON.
 
 buttonSearchMain.addEventListener('click', function () {
-
+   
     console.log('main button works');
     mainSeachBar.setAttribute('class', 'hide');
     var userSearchMain = document.getElementById('mainInput').value;
@@ -49,9 +49,9 @@ buttonSearchMain.addEventListener('click', function () {
 
 //SEARCH BUTTON ON THE TOP RIGHT HAND CORNER.
 
-buttonSearchSecondary.addEventListener('click', function () {
+buttonSearchSecondary.addEventListener('click', function (event) {
 
-    
+    event.preventDefault()
     console.log('secondary button works');
     var userSearchSecondary = document.getElementById("secondaryInput").value;
     console.log(userSearchSecondary);
@@ -61,4 +61,34 @@ buttonSearchSecondary.addEventListener('click', function () {
 
 
 });
+
+// create button feature
+var favouriteRecipe=[]
+var favouriteRecipeListID= document.getElementById("favoritesList")
+
+function renderFavouriteRecipeButton(){
+favouriteRecipeListID.innerHTML=''
+
+for (i=0;i<favouriteRecipe.length;i++){
+    var favouriteButton= document.createElement("button")
+favouriteButton.classList.add("recipies")
+favouriteButton.setAttribute("data-recipeName",favouriteRecipe[i]);
+favouriteButton.textContent=favouriteRecipe[i]
+favouriteRecipeListID.append(favouriteButton)
+
+}
+}
+// buttonSearchMain.addEventListener("click",test )
+buttonSearchSecondary.addEventListener("click",test )
+
+// buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
+
+function test(){
+var userSearchMain = document.getElementById('mainInput').value;
+var userSearchSecondary=document.getElementById('secondaryInput').value;
+favouriteRecipe.push(userSearchMain||userSearchSecondary)
+console.log(userSearchMain)
+renderFavouriteRecipeButton();
+console.log(favouriteRecipe)
+}
 
