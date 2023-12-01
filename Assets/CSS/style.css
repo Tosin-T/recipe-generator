@@ -96,10 +96,13 @@ main {
     height: 3%;
     border-left: 1px solid #ddd;
     padding: 20px;
-   
-
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     
+    
+    position: relative;
+    left: 20%;
 }
 
 
