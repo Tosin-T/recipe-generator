@@ -14,70 +14,61 @@
 </head>
 
 <body>
-  <nav class="navbar bg-nav">
-    <div class="container-fluid">
-      <a class="navbar-brand mx-auto">Recipe Generator</a>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="What are you feeling today?" aria-label="Feeling">
-        <button class="btn btn-outline-success" type="submit">Go</button>
-      </form>
-    </div>
+
+    <nav class="navbar bg-nav">
+      <div class="container-fluid">
+        <a class="navbar-brand mx-auto">Recipe Generator</a>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="What are you feeling today?" aria-label="Feeling">
+          <button class="btn btn-outline-success" type="submit">Go</button>
+        </form>
+      </div>
   </nav>
+  
+  
 
   <main>
     <div class="feeling-search">
       <div class="search-btn">
         <input class="form-control" type="text" placeholder="What are you feeling today?" aria-label="Feeling">
-      <button class="btn btn-outline-success" type="button">Go</button>
+        <button class="btn btn-outline-success" type="button">Go</button>
       </div>
 
-       <!--Image showing, so we have an idea about positioning in the screen-->
-  <div id= "main-content"  class="show">
-    <h3 id="receipe-name">Title</h3>
-    <img id="image" src="https://www.themealdb.com/images/media/meals/1550441882.jpg" alt="Image of the dish">
-    <ul id="ingredients">ingredients
-      <li>Ingredient 1</li>
-      <li>Ingredient 2</li>
-      <li>Ingredient 3</li>
-    </ul>
-      <p id="instructions">Instructions</p>
-      
-      <form class="diet-pref">
-        <fieldset>
-  
-          <label>
-            <input type="checkbox" name="vegetarian">
-            Vegetarian
-          </label>
-  
-          <label>
-            <input  type="checkbox" name="vegan">
-            Vegan
-          </label>
-  
-          <label>
-            <input  type="checkbox" name="glutenFree">
-            Gluten Free
-          </label>
-  
-          <label>
-            <input  type="checkbox" name="halal">
-            Halal
-          </label>
-  
-        </fieldset>
-  
-      </form>
-    </div>
+        <form class="diet-pref">
+          <fieldset>
+
+            <label>
+              <input type="checkbox" name="vegetarian">
+              Vegetarian
+            </label>
+
+            <label>
+              <input type="checkbox" name="vegan">
+              Vegan
+            </label>
+          </fieldset>
+
+        </form>
+      </div>
+            <!--Image showing, so we have an idea about positioning in the screen-->
+            <div id="main-content" class="show">
+              <h3 id="receipe-name">Title</h3>
+              <img id="image" src="https://www.themealdb.com/images/media/meals/1550441882.jpg" alt="Image of the dish">
+              <ul id="ingredients">ingredients
+                <li>Ingredient 1</li>
+                <li>Ingredient 2</li>
+                <li>Ingredient 3</li>
+              </ul>
+              <p id="instructions">Instructions</p>
 
   </main>
-    <aside class="bg-side p-3">
-      <h2>Favorites</h2>
-      <ul id="favoritesList">
-      </ul>
-    </aside>
-  <!-- </main> -->
+  <aside class="bg-side p-3">
+    <h2>Favorites</h2>
+    <ul id="favoritesList">
+    </ul>
+  </aside>
   
+
   <script src="Assets/javaScript/recipe.js"></script>
 </body>
 
