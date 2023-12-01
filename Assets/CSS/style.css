@@ -1,20 +1,29 @@
 body {
     font-family: cursive;
-    background-color:#f5f3bd;
+    background-color: #f5f3bd;
+    margin: 0;
 }
 
 .navbar-brand {
     font-size: 1.5rem;
     font-size: 40px;
-    /* text-align: center; */
-
+   
 }
 
 .bg-nav {
     background-color: rgb(220, 236, 173);
+    height: 90px;
 }
 
+.nav-container {
+    position: fixed;
+    width: 100%;
+    /* z-index: 1000; */
+}
 
+/* main {
+    padding-top: 50px;
+} */
 
 aside {
     width: 300px;
@@ -39,7 +48,7 @@ aside h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-   margin-top: 60px;
+    margin-top: 60px;
     flex-direction: column;
 }
 
@@ -49,36 +58,33 @@ aside h2 {
     border: 2px solid #ddd;
     border-radius: 5px;
     margin-bottom: 10px;
-    /* flex-direction: column;
- */ }
+}
 
 .feeling-search button {
     margin-left: 10px;
     padding: 10px;
     font-size: 1.5rem;
-<<<<<<< HEAD
+
     height: 55px;
 }
 
 .search-btn {
-display: flex;
+    display: flex;
 }
 
 fieldset {
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    
+
 }
 
 label {
-padding: 1.5rem;
+    padding: 1.5rem;
 }
 
-=======
-}
+
 
 .hide {
     display: none;
-  }
->>>>>>> 3d3c6b691e3289aacc6cbed7b7335f68ad0be920
+}

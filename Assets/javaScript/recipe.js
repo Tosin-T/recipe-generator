@@ -24,23 +24,25 @@ buttonSearchMain.addEventListener('click', function () {
     queryURL = apiURL + userSearchMain;
 
     fetch(queryURL)
-            .then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                
-                 function getRandomArray(array) {
-                    for (i = 0; i < data.meals.length; i++) {
-                     var randomArray = Math.floor(Math.random() * array.length);
-                     return array[randomArray];
-                 }}
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
 
-                var dish= getRandomArray(data.meals);
+            function getRandomArray(array) {
+                for (i = 0; i < data.meals.length; i++) {
+                    var randomArray = Math.floor(Math.random() * array.length);
+                    return array[randomArray];
+                }
+            }
 
-            
+            var dish = getRandomArray(data.meals);
 
-                console.log(dish);})
 
-    
+
+            console.log(dish);
+        })
+
+
 
 
 
@@ -51,7 +53,7 @@ buttonSearchMain.addEventListener('click', function () {
 
 buttonSearchSecondary.addEventListener('click', function () {
 
-    
+
     console.log('secondary button works');
     var userSearchSecondary = document.getElementById("secondaryInput").value;
     console.log(userSearchSecondary);
