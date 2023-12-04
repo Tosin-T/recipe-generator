@@ -15,13 +15,13 @@
 
 <body>
 
-  <div id="secondary-btn">
+   >
     <nav class="navbar bg-nav">
       <div class="container-fluid">
         <a class="navbar-brand mx-auto">Recipe Generator</a>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="What are you feeling today?" aria-label="Feeling">
-          <button class="btn btn-outline-success" type="submit">Go</button>
+          <input id= "secondaryInput" class="form-control me-2" type="search" placeholder="What are you feeling today?" aria-label="Feeling">
+          <button class="btn btn-outline-success" id="secondary-btn" type="submit">Go</button>
         </form>
       </div>
   </nav>
@@ -30,10 +30,11 @@
   
 
   <main>
-    <div id="main-btn" class="feeling-search">
+    <div id="main-search" 
+    class=" show feeling-search">
       <div class="search-btn">
-        <input class="form-control" type="text" placeholder="What are you feeling today?" aria-label="Feeling">
-        <button class="btn btn-outline-success" type="button">Go</button>
+        <input id="mainInput" class="form-control" type="text" placeholder="What are you feeling today?" aria-label="Feeling">
+        <button class="btn btn-outline-success" id="main-btn" type="button">Go</button>
       </div>
 
         <form class="diet-pref">
@@ -54,12 +55,15 @@
       </div>
             <!--Image showing, so we have an idea about positioning in the screen-->
             <div id="main-content" class="hide">
-              <h3 id="receipe-name">Title</h3>
+              <h3 id="recipe-name">Title</h3>
               <img id="image" src="" alt="Image of the dish">
-              <ul id="ingredients">ingredients
+              <ul id="ingredients">
+                <h3>Ingredients</h3>
                 
               </ul>
-              <p id="instructions">Instructions</p>
+              <h3>Instructions:</h3>
+              <p id="instructions">
+              </p>
 
   </main>
   <aside class="bg-side p-3">
