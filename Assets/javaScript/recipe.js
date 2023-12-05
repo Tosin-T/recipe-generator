@@ -1,8 +1,8 @@
-var buttonSearchMain = document.getElementById('main-btn');
-var buttonSearchSecondary = document.getElementById('secondary-btn');
+var buttonSearchMain = document.getElementById('mainInput');
+var buttonSearchSecondary = document.getElementById('secondaryInput');
 var mainSeachBar = document.getElementById('main-search');
-var goSearchButtonMain=document.getElementById("GoMain")
-var goSearchButton2nd=document.getElementById("GoSecondary")
+var goSearchButtonMain=document.getElementById("main-btn")
+var goSearchButton2nd=document.getElementById("secondary-btn")
 var userSearchMain = "";
 var userSearchSecondary = "";
 
@@ -15,20 +15,29 @@ var queryURL;
 
 //MAIN SEARCH BUTTON.
 
-goSearchButtonMain.addEventListener('click', function () {
-   
+buttonSearchMain.addEventListener('click', function () {
+
+    document.getElementById('main-content').setAttribute('class', 'show');
+
     console.log('main button works');
     buttonSearchMain.setAttribute('class', 'hide');
     var userSearchMain = buttonSearchMain.value
     console.log(userSearchMain);
 
+    if (userSearchMain == '') {
+
+    }
+
     queryURL = apiURL + userSearchMain;
+
+
 
     fetch(queryURL)
         .then(function (response) {
             return response.json();
         }).then(function (data) {
 
+            //Function to pull a different recipe if more than 1 is returned from API.
             function getRandomArray(array) {
                 for (i = 0; i < data.meals.length; i++) {
                     var randomArray = Math.floor(Math.random() * array.length);
@@ -39,8 +48,38 @@ goSearchButtonMain.addEventListener('click', function () {
             var dish = getRandomArray(data.meals);
 
 
+            document.getElementById("instructions").textContent = dish.strInstructions;;
+            document.getElementById("recipe-name").textContent = dish.strMeal;
+            document.getElementById("image").setAttribute('src', dish.strMealThumb);
 
-            console.log(dish);
+
+            //Function to get ingredients.
+            var ingredientsArray = Object.keys(dish)
+                .filter(key => key.startsWith('strIngredient'))
+                .map(key => dish[key])
+                .filter(ingredient => ingredient.trim() !== '');
+            console.log(ingredientsArray);
+
+            for (var i = 0; i < ingredientsArray.length; i++) {
+
+                var ListEl = document.querySelector('#ingredients');
+
+                var ingredient = ingredientsArray[i];
+
+
+                var li = document.createElement("li");
+                li.textContent = ingredient;
+                li.setAttribute('class', 'ingredients');
+                ListEl.appendChild(li);
+
+
+            }
+
+
+
+
+
+
         })
 
 

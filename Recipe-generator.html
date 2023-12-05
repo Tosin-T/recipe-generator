@@ -15,23 +15,26 @@
 
 <body>
 
+   >
     <nav class="navbar bg-nav">
       <div class="container-fluid">
         <a class="navbar-brand mx-auto">Recipe Generator</a>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" id="secondary-btn" type="search" placeholder="What are you feeling today?" aria-label="Feeling">
-          <button class="btn btn-outline-success" id="GoSecondary" type="submit">Go</button>
+          <input id= "secondaryInput" class="form-control me-2" type="search" placeholder="What are you feeling today?" aria-label="Feeling">
+          <button class="btn btn-outline-success" id="secondary-btn" type="submit">Go</button>
         </form>
       </div>
   </nav>
   
+</div>
   
 
   <main>
-    <div class="feeling-search">
-      <div class="search-btn" id="main-btn">
-        <input class="form-control" type="text" placeholder="What are you feeling today?" aria-label="Feeling">
-        <button class="btn btn-outline-success"id="GoMain""button">Go</button>
+    <div id="main-search" 
+    class=" show feeling-search">
+      <div class="search-btn">
+        <input id="mainInput" class="form-control" type="text" placeholder="What are you feeling today?" aria-label="Feeling">
+        <button class="btn btn-outline-success" id="main-btn" type="button">Go</button>
       </div>
 
         <form class="diet-pref">
@@ -51,15 +54,16 @@
         </form>
       </div>
             <!--Image showing, so we have an idea about positioning in the screen-->
-            <div id="main-content" class="show">
-              <h3 id="receipe-name">Title</h3>
-              <img id="image" src="https://www.themealdb.com/images/media/meals/1550441882.jpg" alt="Image of the dish">
-              <ul id="ingredients">ingredients
-                <li>Ingredient 1</li>
-                <li>Ingredient 2</li>
-                <li>Ingredient 3</li>
+            <div id="main-content" class="hide">
+              <h3 id="recipe-name">Title</h3>
+              <img id="image" src="" alt="Image of the dish">
+              <ul id="ingredients">
+                <h3>Ingredients</h3>
+                
               </ul>
-              <p id="instructions">Instructions</p>
+              <h3>Instructions:</h3>
+              <p id="instructions">
+              </p>
 
   </main>
   <aside class="bg-side p-3">
