@@ -137,3 +137,26 @@ function addingRecipieToArray2(){
     renderFavouriteRecipeButton();
     console.log(favouriteRecipe)
     }
+// GET MEAL BUTTON
+
+var getRandomMeal= document.getElementById("get-meal"); 
+
+getRandomMeal.addEventListener('click', function (event) {
+    event.preventDefault();
+
+document.getElementById('main-content').setAttribute('class', 'show');
+    fetch(y)
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(data);
+            document.getElementById("instructions").textContent = data.meals[0].strInstructions;
+            document.getElementById("recipe-name").textContent = data.meals[0].strMeal;
+            document.getElementById("image").textContent = data.meals[0].strMealThumb;
+
+            console.log(data.meals[0].strMeal);
+            
+        })
+ });
+ 
+        
