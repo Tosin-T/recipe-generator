@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-  }
+}
 
 body {
     font-family: cursive;
@@ -22,7 +22,7 @@ body {
     height: 150px;
     padding-top: 40px;
     margin-top: 25px;
-    
+
 }
 
 main {
@@ -56,9 +56,10 @@ aside h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 11rem;
+    margin-right: 3rem;
     flex-direction: column;
-    font-size: 20px; 
+    font-size: 20px;
     border-radius: 5px;
     margin-bottom: 10px;
     width: 75%;
@@ -84,6 +85,29 @@ aside h2 {
     display: flex;
 }
 
+h3 {
+    color: black;
+    text-align: center;
+}
+
+.randomiser {
+    margin-top: 3rem;
+}
+
+.btn-success {
+    margin-left: 40%;
+    background-color: rgb(214, 231, 179);
+    color: rgb(0, 0, 0);
+    width:max-content;
+}
+
+#get-meal {
+    margin-left: 6rem;
+}
+h3{
+    padding-top: 20rem;
+}
+
 fieldset {
     display: flex;
     justify-content: center;
@@ -103,7 +127,8 @@ label {
 
 @media (min-width: 609px) {
     .navbar-brand {
-        font-size: 30px; /* Adjust the font size for smaller screens */
+        font-size: 30px;
+        /* Adjust the font size for smaller screens */
     }
 }
 
@@ -114,44 +139,11 @@ label {
     display: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   /* favourite button style */
 .recipies{
-
-    width: 30vh;
-    right: 20vh;
+justify-content: center;
+    right: 0vh;
     height: 3%;
     padding: 20px;
-    left: 20%;
 }
 
-
-/* display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 50%;
-    position: relative;
-    left: 20%;
-} */

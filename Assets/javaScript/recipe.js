@@ -1,9 +1,10 @@
 var buttonSearchMain = document.getElementById('main-btn');
 var buttonSearchSecondary = document.getElementById('secondary-btn');
 var mainSeachBar = document.getElementById('main-search');
-
+var favouriteButton=document.getElementById("favouriteButton")
 var userSearchMain = "";
 var userSearchSecondary = "";
+
 
 
 
@@ -15,7 +16,11 @@ var queryURL;
 
 //MAIN SEARCH BUTTON.
 
-buttonSearchMain.addEventListener('click', function () {
+buttonSearchMain.addEventListener('click', PresentContent)
+
+
+
+function PresentContent() {
 
     document.getElementById('main-content').setAttribute('class', 'show');
 
@@ -48,9 +53,8 @@ buttonSearchMain.addEventListener('click', function () {
             var dish = getRandomArray(data.meals);
 
 
-            document.getElementById("instructions").textContent = dish.strInstructions;
-            console.log(dish.strInstructions);
-            document.getElementById("recipe-name").textContent = dish.strMeal;
+            document.getElementById("instructions").textContent = dish.strInstructions;;
+            RandomMealname=document.getElementById("recipe-name").textContent = dish.strMeal;
             document.getElementById("image").setAttribute('src', dish.strMealThumb);
 
 
@@ -87,7 +91,7 @@ buttonSearchMain.addEventListener('click', function () {
 
 
 
-});
+};
 
 
 //SEARCH BUTTON ON THE TOP RIGHT HAND CORNER.
@@ -95,9 +99,8 @@ buttonSearchMain.addEventListener('click', function () {
 buttonSearchSecondary.addEventListener('click', function (event) {
 
     event.preventDefault()
+    PresentContent()
     console.log('secondary button works');
-    buttonSearchSecondary.value
-    console.log(buttonSearchSecondary);
 });
 
 // create button feature
@@ -117,28 +120,44 @@ favouriteRecipeListID.append(favouriteButton)
 }
 }
 // buttonSearchMain.addEventListener("click",test )
-buttonSearchMain.addEventListener("click",addingRecipieToArray1 )
-buttonSearchSecondary.addEventListener("click",addingRecipieToArray2)
+favouriteButton.addEventListener("click",addingRecipieToArray1 )
+
 
 // buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
 
-// buttonSearchMain.addEventListener("click",test )
-favouriteButton.addEventListener("click",addingRecipieToArray1)
-favouriteButton.addEventListener("click",addingRecipieToArray2)
-// buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
 function addingRecipieToArray1(){
-var userSearchMain = mainInput.value;
-if(userSearchMain=''){
-}
-favouriteRecipe.push(userSearchMain)
-console.log(userSearchMain)
+    favouriteRecipe.push(RandomMealname)
 renderFavouriteRecipeButton();
 console.log(favouriteRecipe)
 }
 function addingRecipieToArray2(){
     var userSearchSecondary=secondaryInput.value;
+    
     favouriteRecipe.push(userSearchSecondary)
     console.log(userSearchSecondary)
     renderFavouriteRecipeButton();
     console.log(favouriteRecipe)
     }
+// GET MEAL BUTTON
+
+var getRandomMeal= document.getElementById("get-meal"); 
+
+getRandomMeal.addEventListener('click', function (event) {
+    event.preventDefault();
+
+document.getElementById('main-content').setAttribute('class', 'show');
+    fetch(y)
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(data);
+            document.getElementById("instructions").textContent = data.meals[0].strInstructions;
+            document.getElementById("recipe-name").textContent = data.meals[0].strMeal;
+            document.getElementById("image").textContent = data.meals[0].strMealThumb;
+
+            console.log(data.meals[0].strMeal);
+            
+        })
+ });
+ 
+        
