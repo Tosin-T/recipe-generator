@@ -1,10 +1,10 @@
-var buttonSearchMain = document.getElementById('mainInput');
-var buttonSearchSecondary = document.getElementById('secondaryInput');
+var buttonSearchMain = document.getElementById('main-btn');
+var buttonSearchSecondary = document.getElementById('secondary-btn');
 var mainSeachBar = document.getElementById('main-search');
-var goSearchButtonMain=document.getElementById("main-btn")
-var goSearchButton2nd=document.getElementById("secondary-btn")
+
 var userSearchMain = "";
 var userSearchSecondary = "";
+
 
 
 var apiURL = "https://www.themealdb.com/api/json/v1/1/search.php?s="
@@ -20,8 +20,8 @@ buttonSearchMain.addEventListener('click', function () {
     document.getElementById('main-content').setAttribute('class', 'show');
 
     console.log('main button works');
-    buttonSearchMain.setAttribute('class', 'hide');
-    var userSearchMain = buttonSearchMain.value
+    mainSeachBar.setAttribute('class', 'hide');
+    var userSearchMain = document.getElementById('mainInput').value;
     console.log(userSearchMain);
 
     if (userSearchMain == '') {
@@ -91,7 +91,7 @@ buttonSearchMain.addEventListener('click', function () {
 
 //SEARCH BUTTON ON THE TOP RIGHT HAND CORNER.
 
-goSearchButton2nd.addEventListener('click', function (event) {
+buttonSearchSecondary.addEventListener('click', function (event) {
 
     event.preventDefault()
     console.log('secondary button works');
@@ -116,15 +116,15 @@ favouriteRecipeListID.append(favouriteButton)
 }
 }
 // buttonSearchMain.addEventListener("click",test )
-goSearchButtonMain.addEventListener("click",test )
-goSearchButton2nd.addEventListener("click",test)
+buttonSearchMain.addEventListener("click",test )
+buttonSearchSecondary.addEventListener("click",test)
 
 // buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
 
 function test(){
-var userSearchMain = buttonSearchMain.value;
-var userSearchSecondary=buttonSearchSecondary.value;
-favouriteRecipe.push(userSearchMain||userSearchSecondary)
+var userSearchMain = mainInput.value;
+var userSearchSecondary=secondaryInput.value;
+favouriteRecipe.push(userSearchSecondary||userSearchMain)
 console.log(userSearchMain)
 renderFavouriteRecipeButton();
 console.log(favouriteRecipe)
