@@ -135,4 +135,50 @@ label {
 
 .hide {
     display: none;
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* favourite button style */
+.recipies{
+
+    width: 30vh;
+    right: 20vh;
+    height: 3%;
+    padding: 20px;
+    left: 20%;
+}
+
+
+/* display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+    position: relative;
+    left: 20%;
+} */
+>>>>>>> 1c272df4be1a0df7a0d4f74d9318f42cb949a08f

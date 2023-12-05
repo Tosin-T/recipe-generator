@@ -6,6 +6,7 @@ var userSearchMain = "";
 var userSearchSecondary = "";
 
 
+
 var apiURL = "https://www.themealdb.com/api/json/v1/1/search.php?s="
 var y = "https://www.themealdb.com/api/json/v1/1/random.php"
 var queryURL;
@@ -90,19 +91,52 @@ buttonSearchMain.addEventListener('click', function () {
 
 //SEARCH BUTTON ON THE TOP RIGHT HAND CORNER.
 
-buttonSearchSecondary.addEventListener('click', function () {
+buttonSearchSecondary.addEventListener('click', function (event) {
 
-
+    event.preventDefault()
     console.log('secondary button works');
-    var userSearchSecondary = document.getElementById("secondaryInput").value;
-    console.log(userSearchSecondary);
-
-
-
-
-
+    buttonSearchSecondary.value
+    console.log(buttonSearchSecondary);
 });
 
+// create button feature
+var favouriteRecipe=[]
+var favouriteRecipeListID= document.getElementById("favoritesList")
+
+function renderFavouriteRecipeButton(){
+favouriteRecipeListID.innerHTML=''
+
+for (i=0;i<favouriteRecipe.length;i++){
+    var favouriteButton= document.createElement("button")
+favouriteButton.classList.add("recipies")
+favouriteButton.setAttribute("data-recipeName",favouriteRecipe[i]);
+favouriteButton.textContent=favouriteRecipe[i]
+favouriteRecipeListID.append(favouriteButton)
+
+}
+}
+// buttonSearchMain.addEventListener("click",test )
+buttonSearchMain.addEventListener("click",addingRecipieToArray1 )
+buttonSearchSecondary.addEventListener("click",addingRecipieToArray2)
+
+// buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
+
+function addingRecipieToArray1(){
+var userSearchMain = mainInput.value;
+
+favouriteRecipe.push(userSearchMain)
+console.log(userSearchMain)
+renderFavouriteRecipeButton();
+console.log(favouriteRecipe)
+}
+function addingRecipieToArray2(){
+    var userSearchSecondary=secondaryInput.value;
+    
+    favouriteRecipe.push(userSearchSecondary)
+    console.log(userSearchSecondary)
+    renderFavouriteRecipeButton();
+    console.log(favouriteRecipe)
+    }
 // GET MEAL BUTTON
 
 var getRandomMeal= document.getElementById("get-meal"); 
