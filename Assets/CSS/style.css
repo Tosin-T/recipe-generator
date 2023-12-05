@@ -112,3 +112,44 @@ label {
     display: none;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* favourite button style */
+.recipies{
+
+    width: 30vh;
+    right: 20vh;
+    height: 3%;
+    padding: 20px;
+    left: 20%;
+}
+
+
+/* display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+    position: relative;
+    left: 20%;
+} */
