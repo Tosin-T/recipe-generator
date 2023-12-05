@@ -99,6 +99,8 @@ label {
     padding: 1.5rem;
 }
 
+
+
 @media (min-width: 609px) {
     .navbar-brand {
         font-size: 30px; /* Adjust the font size for smaller screens */
