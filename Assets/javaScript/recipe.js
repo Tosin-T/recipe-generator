@@ -116,17 +116,24 @@ favouriteRecipeListID.append(favouriteButton)
 }
 }
 // buttonSearchMain.addEventListener("click",test )
-buttonSearchMain.addEventListener("click",test )
-buttonSearchSecondary.addEventListener("click",test)
+buttonSearchMain.addEventListener("click",addingRecipieToArray1 )
+buttonSearchSecondary.addEventListener("click",addingRecipieToArray2)
 
 // buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
 
-function test(){
+function addingRecipieToArray1(){
 var userSearchMain = mainInput.value;
-var userSearchSecondary=secondaryInput.value;
-favouriteRecipe.push(userSearchSecondary||userSearchMain)
+
+favouriteRecipe.push(userSearchMain)
 console.log(userSearchMain)
 renderFavouriteRecipeButton();
 console.log(favouriteRecipe)
 }
-
+function addingRecipieToArray2(){
+    var userSearchSecondary=secondaryInput.value;
+    
+    favouriteRecipe.push(userSearchSecondary)
+    console.log(userSearchSecondary)
+    renderFavouriteRecipeButton();
+    console.log(favouriteRecipe)
+    }
