@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+  }
+
 body {
     font-family: cursive;
     background-color: #f5f3bd;
@@ -5,8 +9,8 @@ body {
 }
 
 .navbar-brand {
-    font-size: 1.5rem;
-    font-size: 40px;
+    font-size: 25px;
+    padding: 1rem;
 
 }
 
@@ -23,11 +27,12 @@ body {
 
 main {
     padding-top: 90px;
+    width: 75%;
+    float: left;
 }
 
 
 aside {
-    width: 300px;
     position: fixed;
     top: 86px;
     right: 0;
@@ -45,12 +50,19 @@ aside h2 {
     text-align: center;
 }
 
+
+
 .feeling-search {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 60px;
     flex-direction: column;
+    font-size: 20px; 
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 75%;
+    float: right;
 }
 
 .feeling-search input {
@@ -65,7 +77,6 @@ aside h2 {
     margin-left: 10px;
     padding: 10px;
     font-size: 1.5rem;
-
     height: 55px;
 }
 
@@ -77,15 +88,27 @@ fieldset {
     display: flex;
     justify-content: center;
     margin-top: 10px;
+}
 
+.diet-pref {
+    width: 75%;
+    float: right;
 }
 
 label {
     padding: 1.5rem;
 }
 
+@media (min-width: 609px) {
+    .navbar-brand {
+        font-size: 30px; /* Adjust the font size for smaller screens */
+    }
+}
+
+
 
 
 .hide {
     display: none;
 }
+
