@@ -13,6 +13,7 @@ var queryURL;
 //random API 
 var randomURL = "https://www.themealdb.com/api/json/v1/1/random.php";
 var categoriesURL = "https://www.themealdb.com/api/json/v1/1/categories.php";
+var lookUpURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
 
 //-----------------------------------------------------------------------------------------------------------
 
@@ -21,28 +22,87 @@ var categoriesURL = "https://www.themealdb.com/api/json/v1/1/categories.php";
     let checkVegetarian = document.getElementById("vegetarian");
     let checkVegan = document.getElementById("vegan");
 
-    let arrOfCategories = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+    let categoriesArr = [
+                            "Beef", 
+                            "Chicken", 
+                            "Dessert", 
+                            "Lamb", 
+                            "Miscellaneous", 
+                            "Pasta",
+                            "Pork",
+                            "SeaFood",
+                            "Side",
+                            "Starter",
+                            "Vegan",
+                            "Vegetarian",
+                            "Breakfast",
+                            "Goat"
+                        ];
+    
+    let userFilterArr = [];
 
     //console.log(checkVegetarian.value)
 
+    //function to remove an element from an array based on its name
+    const removeByValue = (arr, value) => {
+        let indexOf = arr.indexOf(value);
+    
+        for(i=0; i<arr.length; i++) {
+            if(value == arr[i]) {
+                console.log(`value: ${value} arr[i]: ${arr[i]}`);
+                let spliceByIndex = arr.splice(indexOf, 1);
+                console.log(`Spliced value: ${spliceByIndex}`);
+
+            }
+        }
+        
+        console.log(`Array values: ${arr}`);
+        return arr   
+    };
+
+    //function to add an element to an array
+    const addByValue = (arr, value) => {
+    
+        //checking value is not already in array before pushing
+        if(arr.includes(value) != true) {
+            arr.push(value);
+            console.log(`Pushed value: ${value}`);
+
+        }
+
+        console.log(`Array values: ${arr}`);
+        return arr   
+    };
+
+    //--------------------------------------EVENT LISTENERS------------------------------------------------
+
     checkVegetarian.addEventListener('click', function () {
-        fetch(categoriesURL)
+        fetch(lookUpURL)
             .then(function (response) {
                 return response.json();
 
             }).then(function (data) {
+                console.log(data)
                 //console.log(data.categories);
                 if(checkVegetarian.value == "true") {
                     checkVegetarian.value = "false";
-                    console.log(`check is now false!`)
+                    console.log(`check is now false!`);
+
+                    //function call to add value to array
+                    addByValue(categoriesArr, "Vegetarian");
+
+                    
 
                 } else if (checkVegetarian.value == "false") {
                     checkVegetarian.value = "true";
-                    console.log(`check is now true!`)
+                    console.log(`check is now true!`);
+
+                    //function call to remove value from array
+                    removeByValue(categoriesArr, "Vegetarian");
 
                 }
             })
-        })
+        });
 
 
 //MAIN SEARCH BUTTON.
