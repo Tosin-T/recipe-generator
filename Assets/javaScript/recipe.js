@@ -1,7 +1,8 @@
 var buttonSearchMain = document.getElementById('main-btn');
 var buttonSearchSecondary = document.getElementById('secondary-btn');
 var mainSeachBar = document.getElementById('main-search');
-
+var goSearchButtonMain=document.getElementById("GoMain")
+var goSearchButton2nd=document.getElementById("GoSecondary")
 var userSearchMain = "";
 var userSearchSecondary = "";
 
@@ -14,33 +15,35 @@ var queryURL;
 
 //MAIN SEARCH BUTTON.
 
-buttonSearchMain.addEventListener('click', function () {
+goSearchButtonMain.addEventListener('click', function () {
    
     console.log('main button works');
-    mainSeachBar.setAttribute('class', 'hide');
-    var userSearchMain = document.getElementById('mainInput').value;
+    buttonSearchMain.setAttribute('class', 'hide');
+    var userSearchMain = buttonSearchMain.value
     console.log(userSearchMain);
 
     queryURL = apiURL + userSearchMain;
 
     fetch(queryURL)
-            .then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                
-                 function getRandomArray(array) {
-                    for (i = 0; i < data.meals.length; i++) {
-                     var randomArray = Math.floor(Math.random() * array.length);
-                     return array[randomArray];
-                 }}
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
 
-                var dish= getRandomArray(data.meals);
+            function getRandomArray(array) {
+                for (i = 0; i < data.meals.length; i++) {
+                    var randomArray = Math.floor(Math.random() * array.length);
+                    return array[randomArray];
+                }
+            }
 
-            
+            var dish = getRandomArray(data.meals);
 
-                console.log(dish);})
 
-    
+
+            console.log(dish);
+        })
+
+
 
 
 
@@ -49,17 +52,12 @@ buttonSearchMain.addEventListener('click', function () {
 
 //SEARCH BUTTON ON THE TOP RIGHT HAND CORNER.
 
-buttonSearchSecondary.addEventListener('click', function (event) {
+goSearchButton2nd.addEventListener('click', function (event) {
 
     event.preventDefault()
     console.log('secondary button works');
-    var userSearchSecondary = document.getElementById("secondaryInput").value;
-    console.log(userSearchSecondary);
-
-
-
-
-
+    buttonSearchSecondary.value
+    console.log(buttonSearchSecondary);
 });
 
 // create button feature
@@ -79,13 +77,14 @@ favouriteRecipeListID.append(favouriteButton)
 }
 }
 // buttonSearchMain.addEventListener("click",test )
-buttonSearchSecondary.addEventListener("click",test )
+goSearchButtonMain.addEventListener("click",test )
+goSearchButton2nd.addEventListener("click",test)
 
 // buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
 
 function test(){
-var userSearchMain = document.getElementById('mainInput').value;
-var userSearchSecondary=document.getElementById('secondaryInput').value;
+var userSearchMain = buttonSearchMain.value;
+var userSearchSecondary=buttonSearchSecondary.value;
 favouriteRecipe.push(userSearchMain||userSearchSecondary)
 console.log(userSearchMain)
 renderFavouriteRecipeButton();
