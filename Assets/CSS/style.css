@@ -137,12 +137,10 @@ label {
 
   /* favourite button style */
 .recipies{
-
-    width: 30vh;
-    right: 20vh;
+justify-content: center;
+    right: 0vh;
     height: 3%;
     padding: 20px;
-    left: 20%;
 }
 
 
