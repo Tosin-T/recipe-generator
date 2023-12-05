@@ -48,7 +48,8 @@ buttonSearchMain.addEventListener('click', function () {
             var dish = getRandomArray(data.meals);
 
 
-            document.getElementById("instructions").textContent = dish.strInstructions;;
+            document.getElementById("instructions").textContent = dish.strInstructions;
+            console.log(dish.strInstructions);
             document.getElementById("recipe-name").textContent = dish.strMeal;
             document.getElementById("image").setAttribute('src', dish.strMealThumb);
 
@@ -121,9 +122,14 @@ buttonSearchSecondary.addEventListener("click",addingRecipieToArray2)
 
 // buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
 
+// buttonSearchMain.addEventListener("click",test )
+favouriteButton.addEventListener("click",addingRecipieToArray1)
+favouriteButton.addEventListener("click",addingRecipieToArray2)
+// buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
 function addingRecipieToArray1(){
 var userSearchMain = mainInput.value;
-
+if(userSearchMain=''){
+}
 favouriteRecipe.push(userSearchMain)
 console.log(userSearchMain)
 renderFavouriteRecipeButton();
@@ -131,7 +137,6 @@ console.log(favouriteRecipe)
 }
 function addingRecipieToArray2(){
     var userSearchSecondary=secondaryInput.value;
-    
     favouriteRecipe.push(userSearchSecondary)
     console.log(userSearchSecondary)
     renderFavouriteRecipeButton();
