@@ -1,7 +1,7 @@
 var buttonSearchMain = document.getElementById('main-btn');
 var buttonSearchSecondary = document.getElementById('secondary-btn');
 var mainSeachBar = document.getElementById('main-search');
-var favouriteButton=document.getElementById("favouriteButton")
+var favouriteButton = document.getElementById("favouriteButton")
 var userSearchMain = "";
 var userSearchSecondary = "";
 var dishObject={}
@@ -58,7 +58,7 @@ console.log(dishObject)
 
 
             document.getElementById("instructions").textContent = dish.strInstructions;;
-            RandomMealname=document.getElementById("recipe-name").textContent = dish.strMeal;
+            RandomMealname = document.getElementById("recipe-name").textContent = dish.strMeal;
             document.getElementById("image").setAttribute('src', dish.strMealThumb);
 
 
@@ -133,9 +133,10 @@ console.log(data)
 // });
 
 // create button feature
-var favouriteRecipe=[]
-var favouriteRecipeListID= document.getElementById("favoritesList")
+var favouriteRecipe = []
+var favouriteRecipeListID = document.getElementById("favoritesList")
 
+<<<<<<< HEAD
 function renderFavouriteRecipeButton(dishObject){
     favouriteRecipe.push(dishObject)
 // localStorage.setItem("Favourite Recipes", JSON.stringify(favouriteRecipe))    
@@ -150,15 +151,31 @@ favouriteButton.classList.add("recipies")
 favouriteButton.setAttribute("data-recipeId",recipe.id);
 favouriteButton.textContent=recipe.recipeName
 favouriteRecipeListID.append(favouriteButton)
+=======
+function renderFavouriteRecipeButton() {
+    favouriteRecipeListID.innerHTML = ''
 
-}
+    for (i = 0; i < favouriteRecipe.length; i++) {
+        var favouriteButton = document.createElement("button")
+        favouriteButton.classList.add("recipies")
+        favouriteButton.setAttribute("data-recipeName", favouriteRecipe[i]);
+        favouriteButton.textContent = favouriteRecipe[i]
+        favouriteRecipeListID.append(favouriteButton)
+>>>>>>> main
+
+    }
 }
 // buttonSearchMain.addEventListener("click",test )
+<<<<<<< HEAD
 favouriteButton.addEventListener("click",renderFavouriteRecipeButton )
+=======
+favouriteButton.addEventListener("click", addingRecipieToArray1)
+>>>>>>> main
 
 
 // buttonSearchMain.addEventListener('click', renderFavouriteRecipeButton)
 
+<<<<<<< HEAD
 
 // function addingRecipieToArray2(){
 //     var userSearchSecondary=secondaryInput.value;
@@ -168,17 +185,32 @@ favouriteButton.addEventListener("click",renderFavouriteRecipeButton )
 //     renderFavouriteRecipeButton();
 //     console.log(favouriteRecipe)
 //     }
+=======
+function addingRecipieToArray1() {
+    favouriteRecipe.push(RandomMealname)
+    renderFavouriteRecipeButton();
+    console.log(favouriteRecipe)
+}
+function addingRecipieToArray2() {
+    var userSearchSecondary = secondaryInput.value;
+
+    favouriteRecipe.push(userSearchSecondary)
+    console.log(userSearchSecondary)
+    renderFavouriteRecipeButton();
+    console.log(favouriteRecipe)
+    }
+>>>>>>> main
 
     // GET RANDOM MEAL BUTTON
 
-var getRandomMeal= document.getElementById("get-meal"); 
+var getRandomMeal = document.getElementById("get-meal");
 
 getRandomMeal.addEventListener('click', function (event) {
     event.preventDefault();
     mainSeachBar.setAttribute('class', 'hide');
 
 
-document.getElementById('main-content').setAttribute('class', 'show');
+    document.getElementById('main-content').setAttribute('class', 'show');
     fetch(y)
         .then(function (response) {
             return response.json();
@@ -240,6 +272,7 @@ document.getElementById('main-content').setAttribute('class', 'show');
         
             
         })
+<<<<<<< HEAD
  });
  var mealID= []
  var querryurlSearch="https://www.themealdb.com/api/json/v1/1/lookup.php?i="
@@ -252,3 +285,7 @@ document.getElementById('main-content').setAttribute('class', 'show');
         }
         )
         
+=======
+});
+
+>>>>>>> main
