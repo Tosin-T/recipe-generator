@@ -17,6 +17,22 @@ var lookUpURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
 
 //-----------------------------------------------------------------------------------------------------------
 
+//Function taken from password generator challenge project. 
+//This function is used onload in the body of the html to uncheck all checkboxes to prevent undesired behaviour.
+const uncheckAll = () => { 
+    let w = document.getElementsByTagName('input'); 
+
+    for (var i = 0; i < w.length; i++) { 
+
+        if (w[i].type=='checkbox') { 
+
+            w[i].checked = false; 
+            
+        }
+    }
+} 
+
+
 //Checkbox filters
 
     let checkVegetarian = document.getElementById("vegetarian");
@@ -48,14 +64,14 @@ var lookUpURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
     
         for(i=0; i<arr.length; i++) {
             if(value == arr[i]) {
-                console.log(`value: ${value} arr[i]: ${arr[i]}`);
+                //console.log(`value: ${value} arr[i]: ${arr[i]}`);
                 spliceByIndex = arr.splice(indexOf, 1);
                 //console.log(`Spliced value: ${spliceByIndex}`);
 
             }
         }
         
-        console.log(`Array values: ${arr}`);
+        //console.log(`Array values: ${arr}`);
         return arr   
     };
 
@@ -65,7 +81,7 @@ var lookUpURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
         //checking value is not already in array before pushing
         if(arr.includes(value) != true) {
             arr.push(value);
-            console.log(`Pushed value: ${value}`);
+            //console.log(`Pushed value: ${value}`);
 
         }
 
@@ -73,23 +89,26 @@ var lookUpURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
         removeByValue(chosenCategories, value);
         
 
-        console.log(`Your chosen categories are now: ${chosenCategories}`);
-
-        console.log(`Array values: ${arr}`);
+        //console.log(`Your chosen categories are now: ${chosenCategories}`);
+        //console.log(`Array values: ${arr}`);
         return arr   
     };
 
     //--------------------------------------EVENT LISTENERS------------------------------------------------
 
+    //TODO: SAVE ALL CHECKBOXES TO VARIABLE. EVENT LISTENER SHOULD USE IF STATEMENTS TO SELECT CORRECT ID.
+    const checkboxes = document.querySelectorAll("checkbox");
+    console.log(checkboxes)
+
     //checkbox eventListener
     checkVegetarian.addEventListener('click', function () {
 
-        fetch(lookUpURL)
-            .then(function (response) {
-                return response.json();
+        // fetch(lookUpURL)
+        //     .then(function (response) {
+        //         return response.json();
 
-            }).then(function (data) {
-                console.log(data)
+        //     }).then(function (data) {
+        //         console.log(data)
                 //console.log(data.categories);
                 if(checkVegetarian.value == "true") {
                     checkVegetarian.value = "false";
@@ -112,7 +131,7 @@ var lookUpURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
 
                 }
             })
-        });
+        //});
 
 
 //MAIN SEARCH BUTTON.
@@ -137,32 +156,56 @@ fetch(queryURL)
     .then(function (response) {
         return response.json();
     }).then(function (data) {
-        console.log(data)
+        // console.log(data)
+
+        let mealsData = data.meals;
+
+        console.log(chosenCategories)
+
+        if (chosenCategories.length > 0) {
+
+            //filters meals data for vegan + vegetarian dishes
+            if(chosenCategories[0].includes("Vegetarian") == true && chosenCategories[0].includes("Vegan") == false || chosenCategories[0].includes("Vegetarian") == true && chosenCategories[0].includes("Vegan") == true) {
+                console.log(`Veg filter selected`)
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan");
+
+            } else if(chosenCategories[0].includes("Vegan") == true && chosenCategories[0].includes("Vegetarian") == false) {
+                console.log(`Vegan filter selected`)
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegan");
+
+            } else {
+                console.log("error: check logic on filters.")
+            }
+
+        }
+
+        //const meatCategorary = data.meals.filter(foodCategory => foodCategory.strCategory === "Beef" || foodCategory.strCategory === "Pork");
         //Function to pull a different recipe if more than 1 is returned from API.
         function getRandomArray(array) {
             for (i = 0; i < data.meals.length; i++) {
 
-                //TODO: SHOULD ONLY CALL ASSIGNED STRCATEGORIES (IE VEGETARIAN) 
                 var randomArray = Math.floor(Math.random() * array.length);
                 return array[randomArray];
             }
         }
+        
+        //var dish = getRandomArray(meatCategorary);
+        //console.log(vegetarianCategorary);
+        var dish = getRandomArray(mealsData);
+        //const dishCategory = dish.strCategory;
 
-        var dish = getRandomArray(data.meals);
-        const dishCategory = dish.strCategory;
+        // //checking if any filters are being used
+        // if(chosenCategories.length != 0) {
+        //     if(chosenCategories.includes(dishCategory) == false) {
 
-        //checking if any filters are being used
-        if(chosenCategories.length != 0) {
-            if(chosenCategories.includes(dishCategory) == false) {
-
-                //console.log(`chosenCategories length is ${chosenCategories.length}!`)
-                console.log(`this dish is a ${dishCategory} dish.`)
-                //function is called until meal with category within chosenCategories is found
-                getRandomArray(data.meals);
-            }
-        } else {
-            console.log(`Outside of if block. No filters should be being used.`)
-        }
+        //         //console.log(`chosenCategories length is ${chosenCategories.length}!`)
+        //         console.log(`this dish is a ${dishCategory} dish.`)
+        //         //function is called until meal with category within chosenCategories is found
+        //         getRandomArray(data.meals);
+        //     }
+        // } else {
+        //     console.log(`Outside of if block. No filters should be being used.`)
+        // }
         
 
 
