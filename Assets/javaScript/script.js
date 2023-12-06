@@ -37,6 +37,7 @@ const uncheckAll = () => {
 
 let checkVegetarian = document.getElementById("vegetarian");
 let checkSeafood = document.getElementById("seafood");
+let checkMeatDishes = document.getElementById("meatDishes");
 
 let categoriesArr = [
                         "Beef", 
@@ -146,10 +147,37 @@ checkSeafood.addEventListener('click', function () {
     }
 });
 
+//Seafood only. Not DRY but for MVP purposes.
+checkMeatDishes.addEventListener('click', function () {
+
+    if(checkMeatDishes.value == "true") {
+        checkMeatDishes.value = "false";
+        console.log(`check is now false!`);
+
+        //function call to add value to array
+        addByValue(categoriesArr, "MeatDishes");
+
+    } else if (checkMeatDishes.value == "false") {
+        checkMeatDishes.value = "true";
+        console.log(`check is now true!`);
+
+        //function call to remove value from array. I think this can be removed.
+        removeByValue(categoriesArr, "Beef");
+        removeByValue(categoriesArr, "Chicken");
+        removeByValue(categoriesArr, "Lamb");
+        removeByValue(categoriesArr, "Pork");
+        removeByValue(categoriesArr, "Goat");
+        
+
+        chosenCategories.push("MeatDishes");
+        console.log(`Your chosen categories are now: ${chosenCategories}`);
+
+    }
+});
+
 
 
 //MAIN SEARCH BUTTON.
-
 buttonSearchMain.addEventListener('click', function () {
 
 document.getElementById('main-content').setAttribute('class', 'show');
@@ -175,21 +203,98 @@ fetch(queryURL)
 
         let mealsData = data.meals;
 
-        console.log(chosenCategories)
+        //console.log(chosenCategories)
 
         if (chosenCategories.length > 0) {
 
-            //filters meals data for Seafood + vegetarian dishes
-            if(chosenCategories[0].includes("Vegetarian") == true && chosenCategories[0].includes("Seafood") == false || chosenCategories[0].includes("Vegetarian") == true && chosenCategories[0].includes("Seafood") == true) {
+            //filters meals data. Not DRY but MVP.
+
+            //VEG, MEAT & SEAFOOD
+            if(chosenCategories.length == 3) {
+                console.log(`Veg, Meat Dishes + Seafood filter selected`)
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan" || foodCategory.strCategory === "Seafood" || foodCategory.strCategory === "Beef" || foodCategory.strCategory === "Chicken" || foodCategory.strCategory === "Lamb" || foodCategory.strCategory === "Pork" || foodCategory.strCategory === "Goat");
+            
+            }
+//TODO: ADD SYNTAX TO ALL 3 2 CHECKLIST OPTIONS
+            if(chosenCategories.length == 2 && !chosenCategories.includes("Vegetarian")) {
+
+
+                console.log("seafood + meat test")
+                for(i=0; i<chosenCategories.length; i++){
+                    let j = 0;
+                    //VEG & MEAT
+                    if(chosenCategories[i] != "Seafood") {
+                        console.log("how many times")
+                        j++
+                        if(j == 2) {
+                            console.log(`Veg + Meat filter selected`)
+                            mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan" || foodCategory.strCategory === "Beef" || foodCategory.strCategory === "Chicken" || foodCategory.strCategory === "Lamb" || foodCategory.strCategory === "Pork" || foodCategory.strCategory === "Goat");
+                        }
+                    console.log(`Meat + Veg J:${j}`)
+                        
+                    
+                    //VEG & SEAFOOD
+                    } 
+
+                    j = 0;
+
+                    if(chosenCategories[i] != "MeatDishes") {
+                        j++
+                        if(j == 2) {
+                            console.log(`Veg + Seafood filter selected`)
+                            mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan" || foodCategory.strCategory === "Seafood");
+                        }
+                    console.log(`Seafood + Veg J:${j}`)
+
+                    //MEAT & SEAFOOD    
+                    } 
+                    
+                    j = 0;
+
+                    if(chosenCategories[i] != "Vegetarian") {
+                        j++
+                        if(j == 2) {
+                        console.log(`Meat + Seafood filter selected`)
+                        mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Beef" || foodCategory.strCategory === "Chicken" || foodCategory.strCategory === "Lamb" || foodCategory.strCategory === "Pork" || foodCategory.strCategory === "Goat" || foodCategory.strCategory === "Seafood"); 
+                        }
+                    console.log(`Seafood + Meat J:${j}`)
+                    
+                    }
+                }
+                // //VEG & MEAT
+                // if(chosenCategories.includes("Seafood") == false) {
+                //     console.log(`Veg + Meat filter selected`)
+                //     mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan" || foodCategory.strCategory === "Beef" || foodCategory.strCategory === "Chicken" || foodCategory.strCategory === "Lamb" || foodCategory.strCategory === "Pork" || foodCategory.strCategory === "Goat");
+                
+                // console.log(chosenCategories)
+                // //VEG & SEAFOOD
+                // } else if(chosenCategories.includes("MeatDishes") == false) {
+                //     console.log(`Veg + Seafood filter selected`)
+                //     mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan" || foodCategory.strCategory === "Seafood");
+
+                // //MEAT & SEAFOOD
+                // } else if(chosenCategories.includes("Vegetarian") == false) {
+                //     console.log(`Meat Dishes + Seafood filter selected`)
+                //     mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Beef" || foodCategory.strCategory === "Chicken" || foodCategory.strCategory === "Lamb" || foodCategory.strCategory === "Pork" || foodCategory.strCategory === "Goat" || foodCategory.strCategory === "Seafood"); 
+                // }
+            }
+            //VEG
+            if(chosenCategories.includes("Vegetarian") == true && chosenCategories.includes("MeatDishes") == false  && chosenCategories.includes("Seafood") == false) {
                 console.log(`Veg filter selected`)
-                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Seafood");
-                console.log(mealsData.length)
-            } else if(chosenCategories[0].includes("Seafood") == true && chosenCategories[0].includes("Vegetarian") == false) {
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan");
+
+            //MEAT
+            } else if(chosenCategories.includes("MeatDishes") == true && chosenCategories.includes("Vegetarian") == false && chosenCategories.includes("Seafood") == false) {
+                console.log(`Meat Dishes filter selected`)
+                console.log("chosenCategories arr:")
+                console.log(chosenCategories)
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Beef" || foodCategory.strCategory === "Chicken" || foodCategory.strCategory === "Lamb" || foodCategory.strCategory === "Pork" || foodCategory.strCategory === "Goat"); 
+
+            //SEAFOOD
+            } else if(chosenCategories.includes("Seafood") == true && chosenCategories.includes("Vegetarian") == false && chosenCategories.includes("MeatDishes") == false) {
                 console.log(`Seafood filter selected`)
                 mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Seafood");
 
-                //TODO: SORT TYPEERROR: DISH IS NOT DEFINED. ON Seafood ONLY. When category changed to beef it works??
-                //console.log(mealsData)
             } else {
                 console.log("error: check logic on filters.")
             }
