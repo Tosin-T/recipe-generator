@@ -16,12 +16,12 @@ var queryURL;
 
 //MAIN SEARCH BUTTON.
 
-buttonSearchMain.addEventListener('click', PresentContent)
+buttonSearchMain.addEventListener('click', PresentContent);
 
 
-
-function PresentContent() {
-
+    function PresentContent() {
+        
+    
     document.getElementById('main-content').setAttribute('class', 'show');
 
     console.log('main button works');
@@ -52,6 +52,10 @@ function PresentContent() {
 
             var dish = getRandomArray(data.meals);
 
+            console.log (dish);
+
+            
+
 
             document.getElementById("instructions").textContent = dish.strInstructions;;
             RandomMealname=document.getElementById("recipe-name").textContent = dish.strMeal;
@@ -62,8 +66,9 @@ function PresentContent() {
             var ingredientsArray = Object.keys(dish)
                 .filter(key => key.startsWith('strIngredient'))
                 .map(key => dish[key])
-                .filter(ingredient => ingredient.trim() !== '');
-            console.log(ingredientsArray);
+                .filter(ingredient => ingredient !== '')
+                .filter(ingredient => ingredient !== null);
+            
 
             for (var i = 0; i < ingredientsArray.length; i++) {
 
@@ -80,6 +85,27 @@ function PresentContent() {
 
             }
 
+            //Function to get measures.
+            var measureArray = Object.keys(dish)
+            .filter(key => key.startsWith('strMeasure'))
+            .map(key => dish[key])
+            .filter(measure =>measure !=='')
+            .filter(measure => measure !== null);
+
+
+            for (var x = 0; x < measureArray.length; x++) {
+                
+                var ListElementMeasure =document.querySelector ('#measure');
+                var measure = measureArray[x];
+                var li2 = document.createElement("li");
+                li2.textContent = measure;
+                li2.setAttribute('class', 'measure');
+                ListElementMeasure.appendChild(li2);
+
+
+
+
+            }
 
 
 
@@ -91,7 +117,8 @@ function PresentContent() {
 
 
 
-};
+}; 
+
 
 
 //SEARCH BUTTON ON THE TOP RIGHT HAND CORNER.
