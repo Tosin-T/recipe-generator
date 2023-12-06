@@ -26,7 +26,8 @@ body {
 }
 
 main {
-    padding-top: 90px;
+    margin-left: 50px;
+    padding-top: auto;
     width: 75%;
     float: left;
 }
@@ -123,6 +124,8 @@ label {
     padding: 1.5rem;
 }
 
+
+
 @media (min-width: 609px) {
     .navbar-brand {
         font-size: 30px;
@@ -142,5 +145,61 @@ justify-content: center;
     right: 0vh;
     height: 3%;
     padding: 20px;
+}
+
+img{
+    
+    width: 550px;
+    height: 500px;
+    border-radius: 5%;
+
+}
+
+#main-content{
+
+    margin-top: -13%;
+ 
+    
+}
+
+#recipe-name{
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+#recipeTop{
+    display: flex;
+    justify-content:flex-start ;
+  
+    
+}
+
+#ingredients{
+    font-size: 25px;
+    padding-top: 25px;
+    padding-left: 15%;
+        
+}
+
+#measure{
+    font-size: 25px;
+    padding-top: 25px;
+    padding-left: 10%;
+}
+
+#instructionsTitle{
+    display: flex;
+    padding: auto;
+    margin-top: -17%;
+    justify-content: flex-start;
+}
+#instructions{
+
+    display: flex;
+    font-size: 25px;
+    text-align: justify;
+    margin-top: 28px;
+    justify-content: flex-start;
 }
 
