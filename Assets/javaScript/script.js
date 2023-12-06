@@ -36,7 +36,7 @@ const uncheckAll = () => {
 //Checkbox filters
 
 let checkVegetarian = document.getElementById("vegetarian");
-let checkVegan = document.getElementById("vegan");
+let checkSeafood = document.getElementById("seafood");
 
 let categoriesArr = [
                         "Beef", 
@@ -49,7 +49,7 @@ let categoriesArr = [
                         "SeaFood",
                         "Side",
                         "Starter",
-                        "Vegan",
+                        "Seafood",
                         "Vegetarian",
                         "Breakfast",
                         "Goat"
@@ -123,22 +123,22 @@ checkVegetarian.addEventListener('click', function () {
     }
 });
 
-//Vegan only. Not DRY but for MVP purposes.
-checkVegan.addEventListener('click', function () {
+//Seafood only. Not DRY but for MVP purposes.
+checkSeafood.addEventListener('click', function () {
 
-    if(checkVegan.value == "true") {
-        checkVegan.value = "false";
+    if(checkSeafood.value == "true") {
+        checkSeafood.value = "false";
         console.log(`check is now false!`);
 
         //function call to add value to array
-        addByValue(categoriesArr, "Vegan");
+        addByValue(categoriesArr, "Seafood");
 
-    } else if (checkVegan.value == "false") {
-        checkVegan.value = "true";
+    } else if (checkSeafood.value == "false") {
+        checkSeafood.value = "true";
         console.log(`check is now true!`);
 
         //function call to remove value from array
-        removeByValue(categoriesArr, "Vegan");
+        removeByValue(categoriesArr, "Seafood");
 
         chosenCategories.push(spliceByIndex);
         console.log(`Your chosen categories are now: ${chosenCategories}`);
@@ -169,6 +169,7 @@ queryURL = apiURL + userSearchMain;
 fetch(queryURL)
     .then(function (response) {
         return response.json();
+
     }).then(function (data) {
         // console.log(data)
 
@@ -178,15 +179,17 @@ fetch(queryURL)
 
         if (chosenCategories.length > 0) {
 
-            //filters meals data for vegan + vegetarian dishes
-            if(chosenCategories[0].includes("Vegetarian") == true && chosenCategories[0].includes("Vegan") == false || chosenCategories[0].includes("Vegetarian") == true && chosenCategories[0].includes("Vegan") == true) {
+            //filters meals data for Seafood + vegetarian dishes
+            if(chosenCategories[0].includes("Vegetarian") == true && chosenCategories[0].includes("Seafood") == false || chosenCategories[0].includes("Vegetarian") == true && chosenCategories[0].includes("Seafood") == true) {
                 console.log(`Veg filter selected`)
-                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan");
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Seafood");
+                console.log(mealsData.length)
+            } else if(chosenCategories[0].includes("Seafood") == true && chosenCategories[0].includes("Vegetarian") == false) {
+                console.log(`Seafood filter selected`)
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Seafood");
 
-            } else if(chosenCategories[0].includes("Vegan") == true && chosenCategories[0].includes("Vegetarian") == false) {
-                console.log(`Vegan filter selected`)
-                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegan");
-
+                //TODO: SORT TYPEERROR: DISH IS NOT DEFINED. ON Seafood ONLY. When category changed to beef it works??
+                //console.log(mealsData)
             } else {
                 console.log("error: check logic on filters.")
             }
@@ -203,25 +206,8 @@ fetch(queryURL)
             }
         }
         
-        //var dish = getRandomArray(meatCategorary);
-        //console.log(vegetarianCategorary);
         var dish = getRandomArray(mealsData);
-        //const dishCategory = dish.strCategory;
-
-        // //checking if any filters are being used
-        // if(chosenCategories.length != 0) {
-        //     if(chosenCategories.includes(dishCategory) == false) {
-
-        //         //console.log(`chosenCategories length is ${chosenCategories.length}!`)
-        //         console.log(`this dish is a ${dishCategory} dish.`)
-        //         //function is called until meal with category within chosenCategories is found
-        //         getRandomArray(data.meals);
-        //     }
-        // } else {
-        //     console.log(`Outside of if block. No filters should be being used.`)
-        // }
-        
-
+        console.log(mealsData)
 
         document.getElementById("instructions").textContent = dish.strInstructions;;
         document.getElementById("recipe-name").textContent = dish.strMeal;
