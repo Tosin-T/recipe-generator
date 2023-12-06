@@ -58,27 +58,27 @@ function PresentContent() {
             document.getElementById("image").setAttribute('src', dish.strMealThumb);
 
 
-            //Function to get ingredients.
-            var ingredientsArray = Object.keys(dish)
-                .filter(key => key.startsWith('strIngredient'))
-                .map(key => dish[key])
-                .filter(ingredient => ingredient.trim() !== '');
-            console.log(ingredientsArray);
+            // //Function to get ingredients.
+            // var ingredientsArray = Object.keys(dish)
+            //     .filter(key => key.startsWith('strIngredient'))
+            //     .map(key => dish[key])
+            //     .filter(ingredient => ingredient.trim() !== '');
+            // console.log(ingredientsArray);
 
-            for (var i = 0; i < ingredientsArray.length; i++) {
+            // for (var i = 0; i < ingredientsArray.length; i++) {
 
-                var ListEl = document.querySelector('#ingredients');
+            //     var ListEl = document.querySelector('#ingredients');
 
-                var ingredient = ingredientsArray[i];
-
-
-                var li = document.createElement("li");
-                li.textContent = ingredient;
-                li.setAttribute('class', 'ingredients');
-                ListEl.appendChild(li);
+            //     var ingredient = ingredientsArray[i];
 
 
-            }
+            //     var li = document.createElement("li");
+            //     li.textContent = ingredient;
+            //     li.setAttribute('class', 'ingredients');
+            //     ListEl.appendChild(li);
+
+
+            // }
 
 
 
