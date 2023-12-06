@@ -8,10 +8,11 @@ body {
     margin-top: 0;
 }
 
+
 .navbar-brand {
     font-size: 25px;
     padding: 1rem;
-
+    
 }
 
 .container-fluid {
@@ -124,16 +125,12 @@ label {
     padding: 1.5rem;
 }
 
-
-
 @media (min-width: 609px) {
     .navbar-brand {
         font-size: 30px;
+        
     }
 }
-
-
-
 
 .hide {
     display: none;
