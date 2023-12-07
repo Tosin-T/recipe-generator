@@ -15,7 +15,6 @@
 
 <body onload="uncheckAll();">
 
-   >
     <nav class="navbar bg-nav">
       <div class="container-fluid">
         <a class="navbar-brand mx-auto">Recipe Generator</a>
@@ -40,20 +39,21 @@
         <form class="diet-pref">
           <fieldset>
 
-            <label>
-              <input type="checkbox" id="vegetarian" name="vegetarian" value="false">
-              Vegetarian
+            <label for="js">
+                <input type="radio" id="allDishes" name="fav_language" value="false">
+                All Dishes
+              </label>
+
+            <label for="html">
+              <input type="radio" id="vegetarian" name="fav_language" value="false">
+              Vegetarian
             </label>
 
-            <label>
-              <input type="checkbox" id="meatDishes" name="meatDishes" value="false">
-              Meat Dishes
+            <label for="css">
+              <input type="radio" id="meatDishes" name="fav_language" value="false">
+              Meat Dishes
             </label>
-
-            <label>
-              <input type="checkbox" id="seafood" name="seafood" value="false">
-              Seafood
-            </label>
+        
           </fieldset>
 
         </form>
