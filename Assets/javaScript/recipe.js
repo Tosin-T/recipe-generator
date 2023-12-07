@@ -1,5 +1,5 @@
 var buttonSearchMain = document.getElementById('main-btn');
-var buttonSearchSecondary = document.getElementById('secondary-btn');
+var backButton = document.getElementById('back-btn');
 var mainSeachBar = document.getElementById('main-search');
 var favouriteButton = document.getElementById("favouriteButton")
 var userSearchMain = "";
@@ -20,6 +20,8 @@ buttonSearchMain.addEventListener('click', PresentContent);
 
 
     function PresentContent() {
+
+        document.getElementById('back-btn').setAttribute('class', 'show');
         
     
     document.getElementById('main-content').setAttribute('class', 'show');
@@ -39,6 +41,7 @@ buttonSearchMain.addEventListener('click', PresentContent);
         .then(function (response) {
             return response.json();
         }).then(function (data) {
+            console.log()
 
             //Function to pull a different recipe if more than 1 is returned from API.
             function getRandomArray(array) {
@@ -118,11 +121,9 @@ buttonSearchMain.addEventListener('click', PresentContent);
 
 //SEARCH BUTTON ON THE TOP RIGHT HAND CORNER.
 
-buttonSearchSecondary.addEventListener('click', function (event) {
+backButton.addEventListener('click', function () {
 
-    event.preventDefault()
-    PresentContent()
-    console.log('secondary button works');
+    window.location.reload();
 });
 
 // create button feature
