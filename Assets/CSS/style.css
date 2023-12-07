@@ -158,15 +158,15 @@ justify-content: center;
 
 img{
     
-    width: 550px;
-    height: 500px;
+    width: 400px;
+    height: 380px;
     border-radius: 5%;
 
 }
 
 #main-content{
 
-    margin-top: -13%;
+    margin-top: -16%;
  
     
 }
@@ -185,14 +185,14 @@ img{
 }
 
 #ingredients{
-    font-size: 25px;
+    font-size: 20px;
     padding-top: 25px;
     padding-left: 15%;
         
 }
 
 #measure{
-    font-size: 25px;
+    font-size: 20px;
     padding-top: 25px;
     padding-left: 10%;
 }
@@ -200,15 +200,31 @@ img{
 #instructionsTitle{
     display: flex;
     padding: auto;
-    margin-top: -17%;
+    margin-top: -25%;
     justify-content: flex-start;
 }
 #instructions{
 
     display: flex;
-    font-size: 25px;
+    font-size: 20px;
     text-align: justify;
     margin-top: 28px;
     justify-content: flex-start;
 }
 
+ul {
+    list-style-type: none;
+  }
+
+  .d-flex{
+    width: 300px;
+    padding-bottom: 25px;
+    
+
+  }
+
+  #secondaryBar{
+    display: flex;
+    justify-content: end;
+    
+  }
