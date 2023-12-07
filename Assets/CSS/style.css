@@ -203,3 +203,16 @@ img{
 ul {
     list-style-type: none;
   }
+
+  .d-flex{
+    width: 300px;
+    padding-bottom: 25px;
+    
+
+  }
+
+  #secondaryBar{
+    display: flex;
+    justify-content: end;
+    
+  }
