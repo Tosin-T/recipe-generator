@@ -173,7 +173,10 @@ var getRandomMeal = document.getElementById("get-meal");
 
 getRandomMeal.addEventListener('click', function (event) {
     event.preventDefault();
+    document.getElementById('back-btn').setAttribute('class', 'show');
     mainSeachBar.setAttribute('class', 'hide');
+    
+
 
 
     document.getElementById('main-content').setAttribute('class', 'show');
