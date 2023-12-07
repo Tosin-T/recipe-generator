@@ -2,8 +2,10 @@ var buttonSearchMain = document.getElementById('main-btn');
 var backButton = document.getElementById('back-btn');
 var mainSeachBar = document.getElementById('main-search');
 var favouriteButton = document.getElementById("favouriteButton")
+var buttonSearchSecondary = document.getElementById("secondary-btn");
 var userSearchMain = "";
 var userSearchSecondary = "";
+
 
 
 
@@ -17,6 +19,7 @@ var queryURL;
 //MAIN SEARCH BUTTON.
 
 buttonSearchMain.addEventListener('click', PresentContent);
+
 
 
     function PresentContent() {
@@ -67,7 +70,9 @@ buttonSearchMain.addEventListener('click', PresentContent);
                 .filter(ingredient => ingredient !== '')
                 .filter(ingredient => ingredient !== null);
             
+                //var ListEl = document.querySelector('#ingredients');
 
+                //ListEl.innerHTML = '';
             for (var i = 0; i < ingredientsArray.length; i++) {
 
                 var ListEl = document.querySelector('#ingredients');
@@ -234,3 +239,95 @@ getRandomMeal.addEventListener('click', function (event) {
         })
 });
 
+//Second search
+buttonSearchSecondary.addEventListener ('click',function(event){
+    event.preventDefault();
+    var userSearchSecondary = document.getElementById('secondaryInput').value;
+    userSearchSecondary
+
+    queryURL = apiURL + userSearchSecondary;
+
+
+
+    fetch(queryURL)
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log()
+
+            //Function to pull a different recipe if more than 1 is returned from API.
+            function getRandomArray(array) {
+                for (i = 0; i < data.meals.length; i++) {
+                    var randomArray = Math.floor(Math.random() * array.length);
+                    return array[randomArray];
+                }
+            }
+
+            var dish = getRandomArray(data.meals);
+            
+
+
+            document.getElementById("instructions").textContent = dish.strInstructions;;
+            RandomMealname = document.getElementById("recipe-name").textContent = dish.strMeal;
+            document.getElementById("image").setAttribute('src', dish.strMealThumb);
+
+
+            //Function to get ingredients.
+            var ingredientsArray = Object.keys(dish)
+                .filter(key => key.startsWith('strIngredient'))
+                .map(key => dish[key])
+                .filter(ingredient => ingredient !== '')
+                .filter(ingredient => ingredient !== null);
+            
+                var ListEl = document.querySelector('#ingredients');
+
+                ListEl.innerHTML = '';
+            for (var i = 0; i < ingredientsArray.length; i++) {
+
+                //var ListEl = document.querySelector('#ingredients');
+
+                var ingredient = ingredientsArray[i];
+
+
+                var li = document.createElement("li");
+                li.textContent = ingredient;
+                li.setAttribute('class', 'ingredients');
+                ListEl.appendChild(li);
+
+
+            }
+
+            //Function to get measures.
+            var measureArray = Object.keys(dish)
+            .filter(key => key.startsWith('strMeasure'))
+            .map(key => dish[key])
+            .filter(measure =>measure !=='')
+            .filter(measure => measure !== null);
+
+            var ListElementMeasure =document.querySelector ('#measure');
+            ListElementMeasure.innerHTML='';
+            for (var x = 0; x < measureArray.length; x++) {
+                
+                //var ListElementMeasure =document.querySelector ('#measure');
+                var measure = measureArray[x];
+                var li2 = document.createElement("li");
+                li2.textContent = measure;
+                li2.setAttribute('class', 'measure');
+                ListElementMeasure.appendChild(li2);
+
+
+
+
+            }
+
+
+
+
+
+        })
+
+
+
+
+
+} );
