@@ -6,6 +6,7 @@ body {
     font-family: cursive;
     background-color: #f5f3bd;
     margin-top: 0;
+    
 }
 
 
@@ -55,6 +56,7 @@ aside h2 {
 
 
 .feeling-search {
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,6 +98,11 @@ h3 {
     margin-top: 3rem;
 }
 
+.fact {
+    margin-top: 2rem;
+
+}
+
 .btn-success {
     margin-left: 40%;
     background-color: rgb(214, 231, 179);
@@ -105,6 +112,11 @@ h3 {
 
 #get-meal {
     margin-left: 6rem;
+}
+
+#fun-trivia-btn{
+    margin-left: 8rem;
+    /* margin-top: 2rem; */
 }
 h3{
     padding-top: 20rem;
