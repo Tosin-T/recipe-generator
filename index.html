@@ -8,41 +8,45 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+  <!-- TITLE -->
   <title>Recipe Generator</title>
   <link rel="stylesheet" href="Assets/css/style.css" />
 </head>
 
 <body onload="uncheckAll();">
-
-    <nav class="navbar bg-nav">
-      <div class="container-fluid">
-        <a class="navbar-brand mx-auto">Recipe Generator</a>
-        <form class="d-flex" role="search">
-          <input id= "secondaryInput" class="form-control me-2" type="search" placeholder="What are you feeling today?" aria-label="Feeling">
-          <button class="btn btn-outline-success" id="secondary-btn" type="submit">Go</button>
-        </form>
-      </div>
+  <!-- NAVBAR -->
+  <nav class="navbar bg-nav">
+    <div class="container-fluid">
+      <a class="navbar-brand mx-auto">Recipe Generator</a>
+      <!-- SECONDARY INPUT -->
+        <button class=" hide btn btn-outline-dark" id="back-btn" type="submit">Back</button>
+    </div>
   </nav>
-  
-</div>
-  
+
+  </div>
+
 
   <main>
-    <div id="main-search" 
-    class=" show feeling-search">
+    <!-- MAIN INPUT -->
+    <div id="main-search" class=" show feeling-search">
       <div class="search-btn">
-        <input id="mainInput" class="form-control" type="text" placeholder="What are you feeling today?" aria-label="Feeling">
+        <input id="mainInput" class="form-control" type="text" placeholder="What are you feeling today?"
+          aria-label="Feeling">
         <button class="btn btn-outline-success" id="main-btn" type="button">Go</button>
       </div>
+      <!-- DIET PREFERENCES -->
+      <form class="diet-pref">
+        <fieldset>
 
-        <form class="diet-pref">
-          <fieldset>
+          <label>
+            <input type="checkbox" name="vegetarian">
+            Vegetarian
+          </label>
 
             <label for="js">
                 <input type="radio" id="allDishes" name="fav_language" value="false">
                 All Dishes
-              </label>
+            </label>
 
             <label for="html">
               <input type="radio" id="vegetarian" name="fav_language" value="false">
@@ -57,28 +61,64 @@
           </fieldset>
 
         </form>
-      </div>
-            <!--Image showing, so we have an idea about positioning in the screen-->
-            <div id="main-content" class="hide">
-              <h3 id="recipe-name">Title</h3>
-              <img id="image" src="" alt="Image of the dish">
-              <ul id="ingredients">
-                <h3>Ingredients</h3>
-                
-              </ul>
-              <h3>Instructions:</h3>
-              <p id="instructions">
-              </p>
 
+        <div class="randomiser">
+          <h4>Get a random meal by clicking below!</h4>
+          <button type="button" class="btn btn-success" id="get-meal">
+            Get Meal 🍔 🍟
+          </button>
+      </div>
+      <div class="fact">
+        <h4>Get a random food fact by clicking below!</h4>
+        <button type="button" class="btn btn-success" id="fun-trivia-btn">
+          Fun food fact 🎉
+        </button>
+      </div>
+      <p id="fun-trivia"></p>
+    </div>
+    <div id="meal" class="row-meal"></div>
+    </div>
+    <!--Image showing, so we have an idea about positioning in the screen-->
+    <div id="main-content" class="hide">
+      <h3 id="recipe-name">Title</h3>
+      <div id="secondaryBar">
+      <form class="d-flex" role="search">
+        <input id="secondaryInput" class="form-control me-2" type="search" placeholder="Search"
+          aria-label="Feeling">
+        <button class="btn btn-outline-success" id="secondary-btn" type="submit">Go</button>
+      </form>
+    </div>
+      <div id="recipeTop">
+        <img id="image" src="" alt="Image of the dish">
+        <ul id="ingredients">
+        </ul>
+        <ul id="measure">
+        </ul>
+      </div>
+      <h3 id="instructionsTitle">Instructions:</h3>
+      <p id="instructions">
+      </p>
+    </div>
+
+    <button type="button" class="btn btn-outline-dark" id="favouriteButton">Favourites ❤️ </button>
+    <!-- Fun Food trivia Button -->
+    <!-- <button type="button" class="btn btn-outline-dark" id="fun-trivia-btn">
+      Fun food fact 🎉
+    </button>
+    <p id="fun-trivia"></p> -->
+    </div>
   </main>
-  <aside class="bg-side p-3">
+  <!-- FAVOURITES -->
+  <aside class="col-md-2 fs-7">
     <h2>Favorites</h2>
     <ul id="favoritesList">
     </ul>
   </aside>
-  
+
 
   <script src="Assets/javaScript/script.js"></script>
+  <script src="Assets/javaScript/recipe.js"></script>
+  <script src="Assets/javaScript/fact.js"></script>
 </body>
 
 </html>

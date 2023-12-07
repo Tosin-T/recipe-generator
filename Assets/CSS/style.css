@@ -1,14 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: cursive;
     background-color: #f5f3bd;
     margin-top: 0;
+    
 }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    font-size: 40px;
-    /* text-align: center; */
 
+.navbar-brand {
+    font-size: 25px;
+    padding: 1rem;
+    
 }
 
 .container-fluid {
@@ -19,16 +24,18 @@ body {
     height: 150px;
     padding-top: 40px;
     margin-top: 25px;
-    
+
 }
 
 main {
-    padding-top: 90px;
+    margin-left: 50px;
+    padding-top: auto;
+    width: 75%;
+    float: left;
 }
 
 
 aside {
-    width: 300px;
     position: fixed;
     top: 86px;
     right: 0;
@@ -46,12 +53,21 @@ aside h2 {
     text-align: center;
 }
 
+
+
 .feeling-search {
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 11rem;
+    margin-right: 3rem;
     flex-direction: column;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 75%;
+    float: right;
 }
 
 .feeling-search input {
@@ -66,7 +82,6 @@ aside h2 {
     margin-left: 10px;
     padding: 10px;
     font-size: 1.5rem;
-
     height: 55px;
 }
 
@@ -74,19 +89,142 @@ aside h2 {
     display: flex;
 }
 
+h3 {
+    color: black;
+    text-align: center;
+}
+
+.randomiser {
+    margin-top: 3rem;
+}
+
+.fact {
+    margin-top: 2rem;
+
+}
+
+.btn-success {
+    margin-left: 40%;
+    background-color: rgb(214, 231, 179);
+    color: rgb(0, 0, 0);
+    width:max-content;
+}
+
+#get-meal {
+    margin-left: 6rem;
+}
+
+#fun-trivia-btn{
+    margin-left: 8rem;
+    /* margin-top: 2rem; */
+}
+h3{
+    padding-top: 20rem;
+}
+
 fieldset {
     display: flex;
     justify-content: center;
     margin-top: 10px;
+}
 
+.diet-pref {
+    width: 75%;
+    float: right;
 }
 
 label {
     padding: 1.5rem;
 }
 
-
+@media (min-width: 609px) {
+    .navbar-brand {
+        font-size: 30px;
+        
+    }
+}
 
 .hide {
     display: none;
 }
+
+  /* favourite button style */
+.recipies{
+justify-content: center;
+    right: 0vh;
+    height: 3%;
+    padding: 20px;
+}
+
+img{
+    
+    width: 400px;
+    height: 380px;
+    border-radius: 5%;
+
+}
+
+#main-content{
+
+    margin-top: -16%;
+ 
+    
+}
+
+#recipe-name{
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+#recipeTop{
+    display: flex;
+    justify-content:flex-start ;
+  
+    
+}
+
+#ingredients{
+    font-size: 20px;
+    padding-top: 25px;
+    padding-left: 15%;
+        
+}
+
+#measure{
+    font-size: 20px;
+    padding-top: 25px;
+    padding-left: 10%;
+}
+
+#instructionsTitle{
+    display: flex;
+    padding: auto;
+    margin-top: -25%;
+    justify-content: flex-start;
+}
+#instructions{
+
+    display: flex;
+    font-size: 20px;
+    text-align: justify;
+    margin-top: 28px;
+    justify-content: flex-start;
+}
+
+ul {
+    list-style-type: none;
+  }
+
+  .d-flex{
+    width: 300px;
+    padding-bottom: 25px;
+    
+
+  }
+
+  #secondaryBar{
+    display: flex;
+    justify-content: end;
+    
+  }
