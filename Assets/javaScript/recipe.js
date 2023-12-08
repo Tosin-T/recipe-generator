@@ -1,5 +1,5 @@
 var buttonSearchMain = document.getElementById('main-btn');
-var buttonSearchSecondary = document.getElementById('secondary-btn');
+var backButton = document.getElementById('back-btn');
 var mainSeachBar = document.getElementById('main-search');
 var favouriteButton=document.getElementById("favouriteButton")
 var favourites= document.getElementsByClassName("recipies")
@@ -13,6 +13,171 @@ var newFavouriteButton= document.createElement("button")
 var apiURL = "https://www.themealdb.com/api/json/v1/1/search.php?s="
 var y = "https://www.themealdb.com/api/json/v1/1/random.php"
 var queryURL;
+
+
+//-----------------------------------------------------------------------------------------------------------
+
+// load favourite buttons on loading 
+document.addEventListener("DOMContentLoaded", LoadingFavourite)
+
+function LoadingFavourite(){
+    var storedFavourites = localStorage.getItem("Favourite Recipes")
+    if (storedFavourites){
+favouriteRecipe=JSON.parse(storedFavourites)
+        if (favouriteRecipe.length>0){
+            renderFavouriteRecipeButtonpreload()
+        }
+
+    }
+}
+// Fav button function
+newFavouriteButton.addEventListener("click", callFavourite)
+//Function taken from password generator challenge project. 
+//This function is used onload in the body of the html to uncheck all checkboxes to prevent undesired behaviour.
+const uncheckAll = () => { 
+    let w = document.getElementsByTagName('input'); 
+
+    for (var i = 0; i < w.length; i++) { 
+
+        if (w[i].type=='radio') { 
+
+            w[i].checked = false; 
+            allDishes.checked = true;
+        }
+    }
+} 
+
+
+// //Checkbox filters
+let allDishes = document.getElementById("allDishes");
+let checkVegetarian = document.getElementById("vegetarian");
+let checkMeatDishes = document.getElementById("meatDishes");
+
+
+let dishType = "allDishes";
+
+//--------------------------------------EVENT LISTENERS------------------------------------------------
+
+//checkbox eventListener
+
+allDishes.addEventListener('click', function (event) {
+
+    console.log(event.target.value)
+    if(allDishes.value == "false") {
+    
+        allDishes.value = true;
+        checkVegetarian.value = false;
+        checkMeatDishes.value = false;
+        
+        dishType = "allDishes";
+        console.log(`dishType: ${dishType}`);
+    }
+});
+
+//Vegetarian only. Not DRY but for MVP purposes.
+checkVegetarian.addEventListener('click', function (event) {
+
+    console.log(event.target.value)
+    if(checkVegetarian.value == "false") {
+    
+        checkVegetarian.value = true;
+        checkMeatDishes.value = false;
+        allDishes.value = false;
+        
+        dishType = "Vegetarian";
+        console.log(`dishType: ${dishType}`);
+    }
+});
+
+
+//MeatDishes only. Not DRY but for MVP purposes.
+checkMeatDishes.addEventListener('click', function () {
+
+    if(checkMeatDishes.value == "false") {
+
+        checkMeatDishes.value = true;
+        checkVegetarian.value = false;
+        allDishes.value = false;
+
+        dishType = "MeatDishes";
+        console.log(`dishType: ${dishType}`);
+    }
+});
+
+
+//-----------------------------------------------------------------------------------------------------------
+
+//Function taken from password generator challenge project. 
+//This function is used onload in the body of the html to uncheck all checkboxes to prevent undesired behaviour.
+const uncheckAll = () => { 
+    let w = document.getElementsByTagName('input'); 
+
+    for (var i = 0; i < w.length; i++) { 
+
+        if (w[i].type=='radio') { 
+
+            w[i].checked = false; 
+            allDishes.checked = true;
+        }
+    }
+} 
+
+
+// //Checkbox filters
+let allDishes = document.getElementById("allDishes");
+let checkVegetarian = document.getElementById("vegetarian");
+let checkMeatDishes = document.getElementById("meatDishes");
+
+
+let dishType = "allDishes";
+
+//--------------------------------------EVENT LISTENERS------------------------------------------------
+
+//checkbox eventListener
+
+allDishes.addEventListener('click', function (event) {
+
+    console.log(event.target.value)
+    if(allDishes.value == "false") {
+    
+        allDishes.value = true;
+        checkVegetarian.value = false;
+        checkMeatDishes.value = false;
+        
+        dishType = "allDishes";
+        console.log(`dishType: ${dishType}`);
+    }
+});
+
+//Vegetarian only. Not DRY but for MVP purposes.
+checkVegetarian.addEventListener('click', function (event) {
+
+    console.log(event.target.value)
+    if(checkVegetarian.value == "false") {
+    
+        checkVegetarian.value = true;
+        checkMeatDishes.value = false;
+        allDishes.value = false;
+        
+        dishType = "Vegetarian";
+        console.log(`dishType: ${dishType}`);
+    }
+});
+
+
+//MeatDishes only. Not DRY but for MVP purposes.
+checkMeatDishes.addEventListener('click', function () {
+
+    if(checkMeatDishes.value == "false") {
+
+        checkMeatDishes.value = true;
+        checkVegetarian.value = false;
+        allDishes.value = false;
+
+        dishType = "MeatDishes";
+        console.log(`dishType: ${dishType}`);
+    }
+});
 
 
 // load favourite buttons on loading 
@@ -36,6 +201,8 @@ buttonSearchMain.addEventListener('click', PresentContent);
 
 
     function PresentContent() {
+
+        document.getElementById('back-btn').setAttribute('class', 'show');
         
     
     document.getElementById('main-content').setAttribute('class', 'show');
@@ -54,7 +221,27 @@ buttonSearchMain.addEventListener('click', PresentContent);
     fetch(queryURL)
         .then(function (response) {
             return response.json();
+
         }).then(function (data) {
+            //console.log(data)
+            let mealsData = data.meals;
+
+            if (dishType == "allDishes") {
+                console.log("all dishes selected");
+
+            } else if (dishType == "Vegetarian") {
+                console.log("Vegetarian Selected.");
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan");
+
+            } else if (dishType == "MeatDishes") {
+                console.log("Meat Dishes Selected");
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Beef" || foodCategory.strCategory === "Chicken" || foodCategory.strCategory === "Lamb" || foodCategory.strCategory === "Pork" || foodCategory.strCategory === "Goat" || foodCategory.strCategory === "Seafood"); 
+
+            } else {
+                console.log("Error: check conditionals");
+            }
+
+
 
             //Function to pull a different recipe if more than 1 is returned from API.
             function getRandomArray(array) {
@@ -63,14 +250,13 @@ buttonSearchMain.addEventListener('click', PresentContent);
                     return array[randomArray];
                 }
             }
-           
-            var dish = getRandomArray(data.meals);
 
+            var dish = getRandomArray(data.meals);
+            
             dishObject.id= dish.idMeal,
             dishObject.recipeName=dish.strMeal
             
 console.log(dishObject)
-
 
 
             document.getElementById("instructions").textContent = dish.strInstructions;;
@@ -120,23 +306,22 @@ console.log(data)
                 li2.setAttribute('class', 'measure');
                 ListElementMeasure.appendChild(li2);
 
-
-
-
             }
-
-
-
-
 
         })
 
-
-
-
-
 }; 
- function displayCopy(){
+
+
+
+//SEARCH BUTTON ON THE TOP RIGHT HAND CORNER.
+
+backButton.addEventListener('click', function () {
+
+    window.location.reload();
+});
+
+function displayCopy(){
     var dish = data.meals;
 
     document.getElementById("instructions").textContent = dish.strInstructions;;
@@ -196,12 +381,6 @@ console.log(data)
 
 
 }
-
-
-
- 
-
-
 
 // create button feature
 var favouriteRecipe=[]
