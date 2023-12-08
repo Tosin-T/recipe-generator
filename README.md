@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea413b1243b208aaa1afc0bc937ee3fdb6f2ab6c
 # Recipe Generator
 
 This is a Food recipe generator that uses prompts from users to direct its search into a API data base and display a picture, ingredients and instructions. It also provides a random fact using a second API should the user want to. The goal of this project stemmed from the stress that comes with deciding what to eat when there a limited products at home
@@ -20,11 +23,19 @@ Next go to the index.html and open in your browser. .
 
 ## Usage
 
+<<<<<<< HEAD
 1) Open webpage
 2) Enter desired food item into search, using the check boxes to filter for food requirements
 3) Click go to execute search from API
 4) If recipe is not to user liking locate search again and repeat step 2+3
 5) If the user see a recipe they would like to save for later, locate the favourite button and click it to save desired recipe to sidebar
+=======
+1) open webpage
+2) enter desired food item into search, using the check boxes to filter for food requirements
+3) click go to execute search from API
+4) if recipe is not to user liking locate search again and repeat step 2 +3
+5)If the user see a recipe they would like to save for later, locate the favourite button and click it to save desired recipe to sidebar
+>>>>>>> ea413b1243b208aaa1afc0bc937ee3fdb6f2ab6c
 
 ## Contributing
 
@@ -35,4 +46,8 @@ Please make sure to update tests as appropriate.
 
 ## License
 
+<<<<<<< HEAD
 [MIT](https://choosealicense.com/licenses/mit/)
+=======
+[MIT](https://choosealicense.com/licenses/mit/)
+>>>>>>> ea413b1243b208aaa1afc0bc937ee3fdb6f2ab6c
