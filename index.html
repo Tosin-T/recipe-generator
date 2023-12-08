@@ -10,10 +10,10 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <!-- TITLE -->
   <title>Recipe Generator</title>
-  <link rel="stylesheet" href="Assets/css/style.css" />
+  <link rel="stylesheet" href="Assets/CSS/style.css" />
 </head>
 
-<body>
+<body onload="uncheckAll();">
   <!-- NAVBAR -->
   <nav class="navbar bg-nav">
     <div class="container-fluid">
@@ -28,48 +28,56 @@
 
   <main>
     <!-- MAIN INPUT -->
-    <div id="main-search" class=" show feeling-search">
+  <div id="main-search" class=" show feeling-search">
       <div class="search-btn">
-        <input id="mainInput" class="form-control" type="text" placeholder="What are you feeling today?"
-          aria-label="Feeling">
+        <input id="mainInput" class="form-control" type="text" placeholder="What are you feeling today?" aria-label="Feeling">
         <button class="btn btn-outline-success" id="main-btn" type="button">Go</button>
       </div>
       <!-- DIET PREFERENCES -->
       <form class="diet-pref">
         <fieldset>
 
-          <label>
-            <input type="checkbox" name="vegetarian">
-            Vegetarian
-          </label>
+            <label for="js">
+                <input type="radio" id="allDishes" name="fav_language" value="false">
+                All Dishes
+            </label>
 
-          <label>
-            <input type="checkbox" name="vegan">
-            Vegan
-          </label>
+            <label for="html">
+              <input type="radio" id="vegetarian" name="fav_language" value="false">
+              Vegetarian
+            </label>
 
-          <label>
-            <input type="checkbox" name="meat">
-            Meat
-          </label>
+            <label for="css">
+              <input type="radio" id="meatDishes" name="fav_language" value="false">
+              Meat Dishes
+            </label>
+        
         </fieldset>
+
       </form>
-      <div class="randomiser">
+      <div class="randomizer">
         <h4>Get a random meal by clicking below!</h4>
         <button type="button" class="btn btn-success" id="get-meal">
           Get Meal 🍔 🍟
         </button>
       </div>
+
       <div class="fact">
         <h4>Get a random food fact by clicking below!</h4>
         <button type="button" class="btn btn-success" id="fun-trivia-btn">
           Fun food fact 🎉
         </button>
       </div>
+
       <p id="fun-trivia"></p>
-    </div>
+    
+    
+     
+    
+
     <div id="meal" class="row-meal"></div>
     </div>
+
     <!--Image showing, so we have an idea about positioning in the screen-->
     <div id="main-content" class="hide">
       <h3 id="recipe-name">Title</h3>
@@ -80,6 +88,7 @@
         <button class="btn btn-outline-success" id="secondary-btn" type="submit">Go</button>
       </form>
     </div>
+
       <div id="recipeTop">
         <img id="image" src="" alt="Image of the dish">
         <ul id="ingredients">
@@ -87,17 +96,14 @@
         <ul id="measure">
         </ul>
       </div>
-      <h3 id="instructionsTitle">Instructions:</h3>
-      <p id="instructions">
-      </p>
+      <div class="recipeBottom">
+        <h3 id="instructionsTitle">Instructions:</h3>
+        <p id="instructions">
+        </p>
+      </div>
     </div>
 
     <button type="button" class="btn btn-outline-dark" id="favouriteButton">Favourites ❤️ </button>
-    <!-- Fun Food trivia Button -->
-    <!-- <button type="button" class="btn btn-outline-dark" id="fun-trivia-btn">
-      Fun food fact 🎉
-    </button>
-    <p id="fun-trivia"></p> -->
     </div>
   </main>
   <!-- FAVOURITES -->

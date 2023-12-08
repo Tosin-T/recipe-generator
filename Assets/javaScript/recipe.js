@@ -15,6 +15,81 @@ var y = "https://www.themealdb.com/api/json/v1/1/random.php"
 var queryURL;
 
 
+//-----------------------------------------------------------------------------------------------------------
+
+//Function taken from password generator challenge project. 
+//This function is used onload in the body of the html to uncheck all checkboxes to prevent undesired behaviour.
+const uncheckAll = () => { 
+    let w = document.getElementsByTagName('input'); 
+
+    for (var i = 0; i < w.length; i++) { 
+
+        if (w[i].type=='radio') { 
+
+            w[i].checked = false; 
+            allDishes.checked = true;
+        }
+    }
+} 
+
+
+// //Checkbox filters
+let allDishes = document.getElementById("allDishes");
+let checkVegetarian = document.getElementById("vegetarian");
+let checkMeatDishes = document.getElementById("meatDishes");
+
+
+let dishType = "allDishes";
+
+//--------------------------------------EVENT LISTENERS------------------------------------------------
+
+//checkbox eventListener
+
+allDishes.addEventListener('click', function (event) {
+
+    console.log(event.target.value)
+    if(allDishes.value == "false") {
+    
+        allDishes.value = true;
+        checkVegetarian.value = false;
+        checkMeatDishes.value = false;
+        
+        dishType = "allDishes";
+        console.log(`dishType: ${dishType}`);
+    }
+});
+
+//Vegetarian only. Not DRY but for MVP purposes.
+checkVegetarian.addEventListener('click', function (event) {
+
+    console.log(event.target.value)
+    if(checkVegetarian.value == "false") {
+    
+        checkVegetarian.value = true;
+        checkMeatDishes.value = false;
+        allDishes.value = false;
+        
+        dishType = "Vegetarian";
+        console.log(`dishType: ${dishType}`);
+    }
+});
+
+
+//MeatDishes only. Not DRY but for MVP purposes.
+checkMeatDishes.addEventListener('click', function () {
+
+    if(checkMeatDishes.value == "false") {
+
+        checkMeatDishes.value = true;
+        checkVegetarian.value = false;
+        allDishes.value = false;
+
+        dishType = "MeatDishes";
+        console.log(`dishType: ${dishType}`);
+    }
+});
+
+
 
 //MAIN SEARCH BUTTON.
 
@@ -43,8 +118,27 @@ buttonSearchMain.addEventListener('click', PresentContent);
     fetch(queryURL)
         .then(function (response) {
             return response.json();
+
         }).then(function (data) {
-            console.log()
+            //console.log(data)
+            let mealsData = data.meals;
+
+            if (dishType == "allDishes") {
+                console.log("all dishes selected");
+
+            } else if (dishType == "Vegetarian") {
+                console.log("Vegetarian Selected.");
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Vegetarian" || foodCategory.strCategory === "Vegan");
+
+            } else if (dishType == "MeatDishes") {
+                console.log("Meat Dishes Selected");
+                mealsData = data.meals.filter(foodCategory => foodCategory.strCategory === "Beef" || foodCategory.strCategory === "Chicken" || foodCategory.strCategory === "Lamb" || foodCategory.strCategory === "Pork" || foodCategory.strCategory === "Goat" || foodCategory.strCategory === "Seafood"); 
+
+            } else {
+                console.log("Error: check conditionals");
+            }
+
+
 
             //Function to pull a different recipe if more than 1 is returned from API.
             function getRandomArray(array) {
@@ -54,8 +148,8 @@ buttonSearchMain.addEventListener('click', PresentContent);
                 }
             }
 
-            var dish = getRandomArray(data.meals);
-            
+            var dish = getRandomArray(mealsData);
+            console.log(mealsData);
 
 
             document.getElementById("instructions").textContent = dish.strInstructions;;
@@ -105,20 +199,9 @@ buttonSearchMain.addEventListener('click', PresentContent);
                 li2.setAttribute('class', 'measure');
                 ListElementMeasure.appendChild(li2);
 
-
-
-
             }
 
-
-
-
-
         })
-
-
-
-
 
 }; 
 
