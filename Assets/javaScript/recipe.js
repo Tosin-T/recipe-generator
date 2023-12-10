@@ -1,21 +1,33 @@
 var buttonSearchMain = document.getElementById('main-btn');
-var backButton = document.getElementById('back-btn');
+var buttonSearchSecondary = document.getElementById('secondary-btn');
 var mainSeachBar = document.getElementById('main-search');
-var favouriteButton = document.getElementById("favouriteButton")
-var buttonSearchSecondary = document.getElementById("secondary-btn");
+var favouriteButton = document.getElementById("favouriteButton");
 var userSearchMain = "";
 var userSearchSecondary = "";
-
-
-
-
+var dishObject = {};
+var newFavouriteButton = document.createElement("button");
+var backButton = document.getElementById('back-btn');
 
 var apiURL = "https://www.themealdb.com/api/json/v1/1/search.php?s="
 var y = "https://www.themealdb.com/api/json/v1/1/random.php"
 var queryURL;
 
-
-//-----------------------------------------------------------------------------------------------------------
+var favouriteRecipe = [];
+var favouriteRecipeListID = document.getElementById("favoritesList");
+// Load favourite buttons on loading
+document.addEventListener("DOMContentLoaded", LoadingFavourite);
+function LoadingFavourite() {
+    var storedFavourites = localStorage.getItem("Favourite Recipes");
+    if (storedFavourites) {
+      favouriteRecipe = JSON.parse(storedFavourites);
+      if (favouriteRecipe.length > 0) {
+        renderFavouriteRecipeButtonpreload();
+      }
+    }
+  }
+  
+  // Fav button function
+newFavouriteButton.addEventListener("click", callFavourite);
 
 //Function taken from password generator challenge project. 
 //This function is used onload in the body of the html to uncheck all checkboxes to prevent undesired behaviour.
@@ -150,10 +162,11 @@ buttonSearchMain.addEventListener('click', PresentContent);
 
             var dish = getRandomArray(mealsData);
             console.log(mealsData);
-
+            dishObject.id = dish.idMeal;
+            dishObject.recipeName = dish.strMeal;
 
             document.getElementById("instructions").textContent = dish.strInstructions;;
-            RandomMealname = document.getElementById("recipe-name").textContent = dish.strMeal;
+            var RandomMealname = document.getElementById("recipe-name").textContent = dish.strMeal;
             document.getElementById("image").setAttribute('src', dish.strMealThumb);
 
 
@@ -217,19 +230,56 @@ backButton.addEventListener('click', function () {
 // create button feature
 var favouriteRecipe = []
 var favouriteRecipeListID = document.getElementById("favoritesList")
+var favouriteRecipe = [];
 
 function renderFavouriteRecipeButton() {
-    favouriteRecipeListID.innerHTML = ''
+  if (!localStorage.getItem("Favourite Recipes")) {
+    localStorage.setItem("Favourite Recipes", JSON.stringify([]));
+  }
 
-    for (i = 0; i < favouriteRecipe.length; i++) {
-        var favouriteButton = document.createElement("button")
-        favouriteButton.classList.add("recipies")
-        favouriteButton.setAttribute("data-recipeName", favouriteRecipe[i]);
-        favouriteButton.textContent = favouriteRecipe[i]
-        favouriteRecipeListID.append(favouriteButton)
+  var storedFavourites = JSON.parse(localStorage.getItem("Favourite Recipes"));
 
-    }
+  storedFavourites.push(dishObject);
+  localStorage.setItem("Favourite Recipes", JSON.stringify(storedFavourites));
+
+  favouriteRecipeListID.innerHTML = '';
+
+  for (i = 0; i < storedFavourites.length; i++) {
+    const recipe = storedFavourites[i];
+    console.log(recipe);
+    var favouriteButton = document.createElement("button");
+    favouriteButton.classList.add("recipies");
+    favouriteButton.setAttribute("data-recipeId", recipe.id);
+    favouriteButton.textContent = recipe.recipeName;
+    favouriteRecipeListID.append(favouriteButton);
+
+    favouriteButton.addEventListener("click", callFavourite);
+  }
 }
+
+function renderFavouriteRecipeButtonpreload() {
+    localStorage.setItem("Favourite Recipes", JSON.stringify(favouriteRecipe));
+    console.log(favouriteRecipe);
+    favouriteRecipeListID.innerHTML = '';
+  
+    for (i = 0; i < favouriteRecipe.length; i++) {
+      const recipe = favouriteRecipe[i];
+      console.log(recipe);
+      var newFavouriteButton = document.createElement("button");
+      newFavouriteButton.classList.add("recipies");
+      newFavouriteButton.setAttribute("data-recipeId", recipe.id);
+      newFavouriteButton.textContent = recipe.recipeName;
+      favouriteRecipeListID.append(newFavouriteButton);
+  
+      newFavouriteButton.addEventListener("click", callFavourite);
+    }
+  }
+  
+// Fav button function
+favouriteButton.addEventListener('click', function () {
+    renderFavouriteRecipeButton();
+  });
+  
 // buttonSearchMain.addEventListener("click",test )
 favouriteButton.addEventListener("click", addingRecipieToArray1)
 
@@ -354,7 +404,7 @@ buttonSearchSecondary.addEventListener ('click',function(event){
 
 
             document.getElementById("instructions").textContent = dish.strInstructions;;
-            RandomMealname = document.getElementById("recipe-name").textContent = dish.strMeal;
+            var RandomMealname = document.getElementById("recipe-name").textContent = dish.strMeal;
             document.getElementById("image").setAttribute('src', dish.strMealThumb);
 
 
@@ -416,4 +466,44 @@ buttonSearchSecondary.addEventListener ('click',function(event){
 
 
 
-} );
+} 
+);
+function callFavourite() {
+    var mealID = this.getAttribute("data-recipeId");
+    var querryurlSearch = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
+  
+    var querryurlcallback = querryurlSearch + mealID;
+    console.log(querryurlcallback);
+  
+    fetch(querryurlcallback)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        var dish = data.meals[0];
+      console.log(dish);
+      document.getElementById("instructions").textContent = dish.strInstructions;
+      document.getElementById("recipe-name").textContent = dish.strMeal;
+      document.getElementById("image").setAttribute('src', dish.strMealThumb);
+
+      var measureArray = Object.keys(dish)
+      .filter(key => key.startsWith('strMeasure'))
+      .map(key => dish[key])
+      .filter(measure =>measure !=='')
+      .filter(measure => measure !== null);
+
+      var ListElementMeasure =document.querySelector ('#measure');
+      ListElementMeasure.innerHTML='';
+      for (var x = 0; x < measureArray.length; x++) {
+          
+          //var ListElementMeasure =document.querySelector ('#measure');
+          var measure = measureArray[x];
+          var li2 = document.createElement("li");
+          li2.textContent = measure;
+          li2.setAttribute('class', 'measure');
+          ListElementMeasure.appendChild(li2);
+      }
+    });
+}
+
