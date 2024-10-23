@@ -3,7 +3,6 @@ var funTriviaParagraph = document.getElementById("fun-trivia");
 // var apiKey = "6e541e32e504436f9123d0aaa6b143a4";
 
 funTriviaButton.addEventListener("click", function () {
-    var apiKey = "6e541e32e504436f9123d0aaa6b143a4"; 
     var apiUrl = "https://api.spoonacular.com/food/trivia/random?apiKey=6e541e32e504436f9123d0aaa6b143a4";
 
     fetch(apiUrl)
